@@ -2,8 +2,9 @@ from AnsiColors import AnsiColors
 
 
 class InputData:
-    """The class can read a specific data type inserted in input by the user.
-    It also allows the possibility to make controls on the data inserted."""
+    """
+    This class can read a specific data type inserted in input by the user, while also allowing to make controls on the data inserted.
+    """
 
     RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
     ALPHANUMERIC_CHARACTERS_ERROR = (
