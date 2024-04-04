@@ -18,6 +18,7 @@ class KnownProblems:
 
         Params:
             a -> The first number to calculate the MCD.
+
             b -> The second number to calculate the MCD.
 
         Returns:
@@ -59,6 +60,7 @@ class KnownProblems:
 
         Params:
             a -> The first number to calculate the MCM.
+
             b -> The second number to calculate the MCM.
 
         Returns:
