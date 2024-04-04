@@ -20,6 +20,15 @@ class InputData:
     MAXIMUM_ERROR = f"{RED_ATTENTION}\nA value less than or equal to %.2f is required."
     FLOAT_FORMAT_ERROR = f"{RED_ATTENTION}\nThe inserted data is in an incorrect format. A float is required."
 
+    def __init__(self) -> None:
+        """Prevents instantiation of this class
+
+        Raises:
+            NotImplementedError
+        """
+
+        raise NotImplementedError()
+
     @staticmethod
     def read_string(message: str, alphanumeric: bool) -> str:
         """Prints message in the terminal and reads the text inserted by the user. If it isn't a string an error message is printed. It's also possible to select if the inserted text needs to be alphanumeric or not via the alphanumeric input variable.
