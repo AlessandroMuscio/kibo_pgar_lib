@@ -5,10 +5,10 @@ import os
 import time
 
 # Internal Libraries
-from ansi_colors import ansi_colors
-from input_data import InputData
-from known_problems import KnownProblems
-from pretty_strings import PrettyStrings
+from it.kibo.fp.lib.ansi_colors import ansi_colors
+from it.kibo.fp.lib.input_data import InputData
+from it.kibo.fp.lib.known_problems import KnownProblems
+from it.kibo.fp.lib.pretty_strings import PrettyStrings
 
 
 class Menu:
@@ -31,7 +31,9 @@ class Menu:
         use_exit_entry: bool,
         centred_title: bool,
     ) -> None:
-        """Constructor that creates a Menu object specifying a title, the entries of the menu, if you want the exit entry or not, if you want the title centred, and the vertical frame will be off by default. It will also automatically calculate the frame length.
+        """Constructor that creates a Menu object specifying a title, the entries of the menu, if 
+        you want the exit entry or not, if you want the title centred, and the vertical frame will 
+        be off by default. It will also automatically calculate the frame length.
 
         Params:
             title -> Represents the title of the menu.
@@ -54,10 +56,22 @@ class Menu:
 
     @property
     def use_vertical_frame(self) -> bool:
+        """Getter of attribute use_vertical_frame.
+        
+        Returns:
+            A bool representing the current value of use_vertical_frame.
+        """
+
         return self._use_vertical_frame
 
     @use_vertical_frame.setter
     def use_vertical_frame(self, value: bool) -> None:
+        """Setter of attribute use_vertical_frame.
+        
+        Params:
+            value -> The new value of use_vertical_frame.
+        """
+
         self._use_vertical_frame = value
 
     @staticmethod

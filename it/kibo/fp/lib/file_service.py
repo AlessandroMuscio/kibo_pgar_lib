@@ -4,7 +4,7 @@
 import pickle
 
 # Internal Libraries
-from ansi_colors import ansi_colors
+from it.kibo.fp.lib.ansi_colors import ansi_colors
 
 
 class FileService:

@@ -1,6 +1,6 @@
 """Module for the InputData class"""
 
-from ansi_colors import ansi_colors
+from it.kibo.fp.lib.ansi_colors import ansi_colors
 
 
 class InputData:
@@ -16,13 +16,13 @@ class InputData:
     _YES_ANSWERS = "yY"
     _NO_ANSWERS = "nN"
     _INTEGER_FORMAT_ERROR = f"""
-    {_RED_ATTENTION}\nThe inserted data is in an incorrect format. 
+    {_RED_ATTENTION}\nThe inserted data is in an incorrect format.
     An integer is required.
     """
     _MINIMUM_ERROR = f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
     _MAXIMUM_ERROR = f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
     _FLOAT_FORMAT_ERROR = f"""
-    {_RED_ATTENTION}\nThe inserted data is in an incorrect format. 
+    {_RED_ATTENTION}\nThe inserted data is in an incorrect format.
     A float is required.
     """
 

@@ -22,7 +22,7 @@ class PrettyStrings:
 
     @staticmethod
     def frame(
-        to_frame: str, frame_length: int, centered: bool, _VERTICAL_FRAME: bool
+        to_frame: str, frame_length: int, centered: bool, vertical_frame: bool
     ) -> str:
         """Puts the given string in the center or in the beginning of the line surrounded by the
         horizontal frame above and below and, if needed, also the vertical frame before and after.
@@ -35,7 +35,7 @@ class PrettyStrings:
 
             centered -> If the string needs to be centered or not.
 
-            _VERTICAL_FRAME -> If the vertical frame is needed or not.
+            vertical_frame -> If the vertical frame is needed or not.
 
         Returns:
             A string containing the framed original string.
@@ -48,25 +48,25 @@ class PrettyStrings:
             + PrettyStrings._NEW_LINE
         )
 
-        if _VERTICAL_FRAME:
+        if vertical_frame:
             framed.append(PrettyStrings._VERTICAL_FRAME)
 
         if centered:
             framed.append(
                 PrettyStrings.center(to_frame, frame_length - 2)
-                if _VERTICAL_FRAME
+                if vertical_frame
                 else PrettyStrings.center(to_frame, frame_length)
                 + PrettyStrings._NEW_LINE
             )
         else:
             framed.append(
                 PrettyStrings.column(to_frame, frame_length - 2)
-                if _VERTICAL_FRAME
+                if vertical_frame
                 else PrettyStrings.column(to_frame, frame_length)
                 + PrettyStrings._NEW_LINE
             )
 
-        if _VERTICAL_FRAME:
+        if vertical_frame:
             framed.append(PrettyStrings._VERTICAL_FRAME + PrettyStrings._NEW_LINE)
 
         framed.append(
