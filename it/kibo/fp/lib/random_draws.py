@@ -1,3 +1,5 @@
+"""Module for the RandomDraws class"""
+
 # Standard Libraries
 import random
 
@@ -50,14 +52,18 @@ class RandomDraws:
     def draw_integer_with_distribution(
         minimum: int, maximum: int, exponent: float
     ) -> int:
-        """Draws a random integer between given minimum and maximum values, with a certain distribution. In order to distribute the values you use the exponent:
-        • exponent &#8804; 0: Completely random values will be given, almost always not between the given minimum and maximum values. This usage is not encouraged.
+        """Draws a random integer between given minimum and maximum values, with a certain
+        distribution. In order to distribute the values you use the exponent:
+        • exponent &#8804; 0: Completely random values will be given, almost always not between the
+        given minimum and maximum values. This usage is not encouraged.
 
-        • 0 < exponent < 1: The values near the maximum have a greater probability of being drawn, closer the exponent is to 0.
+        • 0 < exponent < 1: The values near the maximum have a greater probability of being drawn,
+        closer the exponent is to 0.
 
         • exponent = 1: All the values have the same probability of being drawn.
 
-        • exponent &#8805; 1: The values near the minimum have a greater probability of being drawn, greater exponents will increase this probability.
+        • exponent &#8805; 1: The values near the minimum have a greater probability of being
+        drawn, greater exponents will increase this probability.
 
         Params:
             minimum -> The minimum value to draw.

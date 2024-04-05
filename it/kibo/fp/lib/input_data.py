@@ -1,27 +1,30 @@
-from AnsiColors import AnsiColors
+"""Module for the InputData class"""
+
+from ansi_colors import ansi_colors
 
 
 class InputData:
     """
-    This class can read a specific data type inserted in input by the user, while also allowing to make controls on the data inserted.
+    This class can read a specific data type inserted in input by the user, while also allowing to 
+    make controls on the data inserted.
     """
 
-    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
-    _ALPHANUMERIC_CHARACTERS_ERROR = (
-        f"{_RED_ATTENTION}\nOnly alphanumeric characters are allowed."
-    )
+    _RED_ATTENTION = f"{ansi_colors["red"]}Attention!{ansi_colors["reset"]}"
+    _ALPHANUMERIC_CHARACTERS_ERROR = f"{_RED_ATTENTION}\nOnly alphanumeric characters are allowed."
     _EMPTY_STRING_ERROR = f"{_RED_ATTENTION}\nNo characters were inserted."
     _ALLOWED_CHARACTERS_ERROR = f"{_RED_ATTENTION}\nThe only allowed characters are: "
     _YES_ANSWERS = "yY"
     _NO_ANSWERS = "nN"
-    _INTEGER_FORMAT_ERROR = f"{_RED_ATTENTION}\nThe inserted data is in an incorrect format. An integer is required."
-    _MINIMUM_ERROR = (
-        f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
-    )
-    _MAXIMUM_ERROR = (
-        f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
-    )
-    _FLOAT_FORMAT_ERROR = f"{_RED_ATTENTION}\nThe inserted data is in an incorrect format. A float is required."
+    _INTEGER_FORMAT_ERROR = f"""
+    {_RED_ATTENTION}\nThe inserted data is in an incorrect format. 
+    An integer is required.
+    """
+    _MINIMUM_ERROR = f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
+    _MAXIMUM_ERROR = f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
+    _FLOAT_FORMAT_ERROR = f"""
+    {_RED_ATTENTION}\nThe inserted data is in an incorrect format. 
+    A float is required.
+    """
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
@@ -34,7 +37,9 @@ class InputData:
 
     @staticmethod
     def read_string(message: str, alphanumeric: bool) -> str:
-        """Prints message in the terminal and reads the text inserted by the user. If it isn't a string an error message is printed. It's also possible to select if the inserted text needs to be alphanumeric or not via the alphanumeric input variable.
+        """Prints message in the terminal and reads the text inserted by the user. If it isn't a 
+        string an error message is printed. It's also possible to select if the inserted text needs 
+        to be alphanumeric or not via the alphanumeric input variable.
 
         Params:
             message -> The message to print.
@@ -61,7 +66,9 @@ class InputData:
 
     @staticmethod
     def read_non_empty_string(message: str, alphanumeric: bool) -> str:
-        """Prints message in the terminal and reads the text inserted by the user, given that it isn't empty. If it isn't a string an error message is printed. It's also possible to select if the inserted text needs to be alphanumeric or not via the alphanumeric input variable.
+        """Prints message in the terminal and reads the text inserted by the user, given that it 
+        isn't empty. If it isn't a string an error message is printed. It's also possible to select 
+        if the inserted text needs to be alphanumeric or not via the alphanumeric input variable.
 
         Params:
             message -> The message to print.
@@ -150,7 +157,7 @@ class InputData:
 
     @staticmethod
     def read_integer_with_minimum(message: str, min_value: int) -> int:
-        """Reads an integer input from the user with a minimun value constraint.
+        """Reads an integer input from the user with a minimum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -174,7 +181,7 @@ class InputData:
 
     @staticmethod
     def read_integer_with_maximum(message: str, max_value: int) -> int:
-        """Reads an integer input from the user with a maximun value constraint.
+        """Reads an integer input from the user with a maximum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -198,7 +205,7 @@ class InputData:
 
     @staticmethod
     def read_integer_between(message: str, min_value: int, max_value: int) -> int:
-        """Reads an integer input from the user with a minimum and maximun value constraint.
+        """Reads an integer input from the user with a minimum and maximum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -208,7 +215,8 @@ class InputData:
             max_value -> The maximum allowed value for the input.
 
         Returns:
-            The integer input by the user that is greater than or equal to min and less than or equal to max.
+            The integer input by the user that is greater than or equal to min and less than or 
+            equal to max.
         """
 
         is_input_valid = False
@@ -248,7 +256,7 @@ class InputData:
 
     @staticmethod
     def read_float_with_minimum(message: str, min_value: float) -> float:
-        """Reads a float input from the user with a minimun value constraint.
+        """Reads a float input from the user with a minimum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -272,7 +280,7 @@ class InputData:
 
     @staticmethod
     def read_float_with_maximum(message: str, max_value: float) -> float:
-        """Reads a float input from the user with a maximun value constraint.
+        """Reads a float input from the user with a maximum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -296,7 +304,7 @@ class InputData:
 
     @staticmethod
     def read_float_between(message: str, min_value: float, max_value: float) -> float:
-        """Reads a float input from the user with a minimum and maximun value constraint.
+        """Reads a float input from the user with a minimum and maximum value constraint.
 
         Params:
             message -> The message to display the user.
@@ -306,7 +314,8 @@ class InputData:
             max_value -> The maximum allowed value for the input.
 
         Returns:
-            The float input by the user that is greater than or equal to min and less than or equal to max.
+            The float input by the user that is greater than or equal to min and less than or equal 
+            to max.
         """
 
         is_input_valid = False

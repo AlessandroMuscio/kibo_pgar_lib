@@ -1,3 +1,6 @@
+"""Module for the PrettyStrings class"""
+
+
 class PrettyStrings:
     """
     This class contains various methods to better print strings to the terminal.
@@ -21,7 +24,9 @@ class PrettyStrings:
     def frame(
         to_frame: str, frame_length: int, centered: bool, _VERTICAL_FRAME: bool
     ) -> str:
-        """Puts the given string in the center or in the beginning of the line surrounded by the horizontal frame above and below and, if needed, also the vertical frame before and after. It's required to specify a frame length for the horizontal frame.
+        """Puts the given string in the center or in the beginning of the line surrounded by the
+        horizontal frame above and below and, if needed, also the vertical frame before and after.
+        It's required to specify a frame length for the horizontal frame.
 
         Params:
             to_frame -> The string to put in the frame
@@ -73,7 +78,8 @@ class PrettyStrings:
 
     @staticmethod
     def column(to_columnize: str, width: int) -> str:
-        """Puts teh given string at the beginning of the line and adds _SPACEs until the end of the line. If the string is too long for the width of the line, it will be cut off.
+        """Puts teh given string at the beginning of the line and adds _SPACEs until the end of the
+        line. If the string is too long for the width of the line, it will be cut off.
 
         Params:
             to_columnize -> The string to put in column.
@@ -95,7 +101,8 @@ class PrettyStrings:
 
     @staticmethod
     def center(to_center: str, width: int) -> str:
-        """Puts the given string in the center of the line of the given length. If the string is too long it will be cut off.
+        """Puts the given string in the center of the line of the given length. If the string is
+        too long it will be cut off.
 
         Params:
             to_center -> The string to center.
@@ -109,13 +116,13 @@ class PrettyStrings:
         elif width == to_center_length:
             centred = to_center
         else:
-            white__SPACEs = width - to_center_length
-            _SPACEs_before = white__SPACEs // 2
-            _SPACEs_after = white__SPACEs - _SPACEs_before
+            white_spaces = width - to_center_length
+            spaces_before = white_spaces // 2
+            spaces_after = white_spaces - spaces_before
 
-            centred = PrettyStrings.repeat_char(PrettyStrings._SPACE, _SPACEs_before)
+            centred = PrettyStrings.repeat_char(PrettyStrings._SPACE, spaces_before)
             centred += to_center
-            centred += PrettyStrings.repeat_char(PrettyStrings._SPACE, _SPACEs_after)
+            centred += PrettyStrings.repeat_char(PrettyStrings._SPACE, spaces_after)
 
         return centred
 

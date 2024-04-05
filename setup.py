@@ -1,3 +1,5 @@
+"""Used for setting up the package to be published to PyPI"""
+
 from setuptools import setup, find_packages
 
 setup(

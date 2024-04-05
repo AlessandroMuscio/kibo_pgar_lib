@@ -1,6 +1,10 @@
+"""Module for the KnownProblems class"""
+
+
 class KnownProblems:
     """
-    This class has the implementation of some of the usual problems that you always forget and need to go watch the solution on StackOverflow even though you know you've already solved them.
+    This class has the implementation of some of the usual problems that you always forget and need
+    to go watch the solution on StackOverflow even though you know you've already solved them.
     """
 
     def __init__(self) -> None:
@@ -41,7 +45,8 @@ class KnownProblems:
             values -> The values used to find the MCD.
 
         Returns:
-            An integer representing the MCD between all the values. If values is None or an empty array, -1 will be returned.
+            An integer representing the MCD between all the values. If values is None or an empty
+            array, -1 will be returned.
         """
 
         if not values:
@@ -79,7 +84,8 @@ class KnownProblems:
             values -> The values used to find the MCM.
 
         Returns:
-            An integer representing the MCM between all the values. If values is None or an empty array, -1 will be returned.
+            An integer representing the MCM between all the values. If values is None or an empty
+            array, -1 will be returned.
         """
 
         if not values:

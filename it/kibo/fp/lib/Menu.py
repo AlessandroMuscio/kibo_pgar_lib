@@ -1,12 +1,14 @@
+"""Module for the Menu class"""
+
 # Standard Libraries
 import os
 import time
 
 # Internal Libraries
-from AnsiColors import AnsiColors
-from InputData import InputData
-from KnownProblems import KnownProblems
-from PrettyStrings import PrettyStrings
+from ansi_colors import ansi_colors
+from input_data import InputData
+from known_problems import KnownProblems
+from pretty_strings import PrettyStrings
 
 
 class Menu:
@@ -19,7 +21,7 @@ class Menu:
     _EXIT_ENTRY = "0. Exit"
     _INSERT_REQUEST = "> "
     _NEGATIVE_MILLIS_ERROR = (
-        f"{AnsiColors.RED}Attention!{AnsiColors.RESET}\nYou can't have negative time."
+        f"{ansi_colors["red"]}Attention!{ansi_colors["reset"]}\nYou can't have negative time."
     )
 
     def __init__(
@@ -28,9 +30,8 @@ class Menu:
         entries: list[str],
         use_exit_entry: bool,
         centred_title: bool,
-        use_vertical_frame: bool,
     ) -> None:
-        """Constructor that creates a Menu object specifying a title, the entries of the menu, if you want the exit entry or not, if you want the title centred, and if you also want the vertical frame in the title. It will also automatically calculate the frame length.
+        """Constructor that creates a Menu object specifying a title, the entries of the menu, if you want the exit entry or not, if you want the title centred, and the vertical frame will be off by default. It will also automatically calculate the frame length.
 
         Params:
             title -> Represents the title of the menu.
@@ -49,11 +50,20 @@ class Menu:
         self._use_exit_entry = use_exit_entry
         self._frame_length = Menu._calculate_frame_length(title, entries)
         self._centred_title = centred_title
-        self._use_vertical_frame = use_vertical_frame
+        self._use_vertical_frame = False
+
+    @property
+    def use_vertical_frame(self) -> bool:
+        return self._use_vertical_frame
+
+    @use_vertical_frame.setter
+    def use_vertical_frame(self, value: bool) -> None:
+        self._use_vertical_frame = value
 
     @staticmethod
     def _calculate_frame_length(title: str, entries: list[str]) -> int:
-        """Calculates the frame length by measuring the length of the title and of all the entries of the menu, accounting for their number and the ". " string before the actual entry.
+        """Calculates the frame length by measuring the length of the title and of all the entries
+        of the menu, accounting for their number and the ". " string before the actual entry.
 
         Params:
             title -> The title of the menu.
