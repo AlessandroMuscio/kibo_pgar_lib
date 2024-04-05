@@ -1,8 +1,8 @@
-# Std Libs
+# Standard Libraries
 import os
 import time
 
-# Internal Libs
+# Internal Libraries
 from AnsiColors import AnsiColors
 from InputData import InputData
 from KnownProblems import KnownProblems
@@ -153,17 +153,3 @@ class Menu:
             print(".", end="", flush=True)
 
         Menu.clear_console()
-
-
-def main():
-    menu = Menu(
-        "My Menù", ["First Entry", "Second Entry", "Third Entry"], True, True, False
-    )
-    choice = menu.choose()
-
-    print(f"\n\nYour choice: {choice}")
-    Menu.loading_message("Loading")
-
-
-if __name__ == "__main__":
-    main()

@@ -6,20 +6,22 @@ class InputData:
     This class can read a specific data type inserted in input by the user, while also allowing to make controls on the data inserted.
     """
 
-    RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
-    ALPHANUMERIC_CHARACTERS_ERROR = (
-        f"{RED_ATTENTION}\nOnly alphanumeric characters are allowed."
+    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
+    _ALPHANUMERIC_CHARACTERS_ERROR = (
+        f"{_RED_ATTENTION}\nOnly alphanumeric characters are allowed."
     )
-    EMPTY_STRING_ERROR = f"{RED_ATTENTION}\nNo characters were inserted."
-    ALLOWED_CHARACTERS_ERROR = f"{RED_ATTENTION}\nThe only allowed characters are: "
-    YES_ANSWERS = "yY"
-    NO_ANSWERS = "nN"
-    INTEGER_FORMAT_ERROR = f"{RED_ATTENTION}\nThe inserted data is in an incorrect format. An integer is required."
-    MINIMUM_ERROR = (
-        f"{RED_ATTENTION}\nA value greater than or equal to %.2f is required."
+    _EMPTY_STRING_ERROR = f"{_RED_ATTENTION}\nNo characters were inserted."
+    _ALLOWED_CHARACTERS_ERROR = f"{_RED_ATTENTION}\nThe only allowed characters are: "
+    _YES_ANSWERS = "yY"
+    _NO_ANSWERS = "nN"
+    _INTEGER_FORMAT_ERROR = f"{_RED_ATTENTION}\nThe inserted data is in an incorrect format. An integer is required."
+    _MINIMUM_ERROR = (
+        f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
     )
-    MAXIMUM_ERROR = f"{RED_ATTENTION}\nA value less than or equal to %.2f is required."
-    FLOAT_FORMAT_ERROR = f"{RED_ATTENTION}\nThe inserted data is in an incorrect format. A float is required."
+    _MAXIMUM_ERROR = (
+        f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
+    )
+    _FLOAT_FORMAT_ERROR = f"{_RED_ATTENTION}\nThe inserted data is in an incorrect format. A float is required."
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
@@ -53,7 +55,7 @@ class InputData:
             is_alphanumeric = read.isalnum()
 
             if not is_alphanumeric:
-                print(InputData.ALPHANUMERIC_CHARACTERS_ERROR)
+                print(InputData._ALPHANUMERIC_CHARACTERS_ERROR)
 
         return read
 
@@ -77,7 +79,7 @@ class InputData:
 
             is_empty = not bool(read)
             if is_empty:
-                print(InputData.EMPTY_STRING_ERROR)
+                print(InputData._EMPTY_STRING_ERROR)
 
         return read
 
@@ -102,7 +104,7 @@ class InputData:
             if allowed and read in allowed:
                 is_allowed = True
             else:
-                print(InputData.ALLOWED_CHARACTERS_ERROR, list(allowed))
+                print(InputData._ALLOWED_CHARACTERS_ERROR, list(allowed))
 
         return read
 
@@ -117,10 +119,12 @@ class InputData:
             True if the user reponds with 'y' or 'Y', False otherwise.
         """
 
-        question = f"{question}? [{InputData.YES_ANSWERS[1]}/{InputData.NO_ANSWERS[0]}]"
+        question = (
+            f"{question}? [{InputData._YES_ANSWERS[1]}/{InputData._NO_ANSWERS[0]}]"
+        )
         response = InputData.read_char(question)
 
-        return response in InputData.YES_ANSWERS
+        return response in InputData._YES_ANSWERS
 
     @staticmethod
     def read_integer(message: str) -> int:
@@ -140,7 +144,7 @@ class InputData:
                 read = int(input(message))
                 is_integer = True
             except ValueError:
-                print(InputData.INTEGER_FORMAT_ERROR)
+                print(InputData._INTEGER_FORMAT_ERROR)
 
         return read
 
@@ -164,7 +168,7 @@ class InputData:
             if read >= min_value:
                 is_input_valid = True
             else:
-                print(InputData.MINIMUM_ERROR % min_value)
+                print(InputData._MINIMUM_ERROR % min_value)
 
         return read
 
@@ -188,7 +192,7 @@ class InputData:
             if read <= max_value:
                 is_input_valid = True
             else:
-                print(InputData.MAXIMUM_ERROR % max_value)
+                print(InputData._MAXIMUM_ERROR % max_value)
 
         return read
 
@@ -212,9 +216,9 @@ class InputData:
         while not is_input_valid:
             read = InputData.read_integer(message)
             if read < min_value:
-                print(InputData.MINIMUM_ERROR % max_value)
+                print(InputData._MINIMUM_ERROR % max_value)
             elif read > max_value:
-                print(InputData.MAXIMUM_ERROR % max_value)
+                print(InputData._MAXIMUM_ERROR % max_value)
             else:
                 is_input_valid = True
 
@@ -238,7 +242,7 @@ class InputData:
                 read = float(input(message))
                 is_float = True
             except ValueError:
-                print(InputData.FLOAT_FORMAT_ERROR)
+                print(InputData._FLOAT_FORMAT_ERROR)
 
         return read
 
@@ -262,7 +266,7 @@ class InputData:
             if read >= min_value:
                 is_input_valid = True
             else:
-                print(InputData.MINIMUM_ERROR % min_value)
+                print(InputData._MINIMUM_ERROR % min_value)
 
         return read
 
@@ -286,7 +290,7 @@ class InputData:
             if read <= max_value:
                 is_input_valid = True
             else:
-                print(InputData.MAXIMUM_ERROR % max_value)
+                print(InputData._MAXIMUM_ERROR % max_value)
 
         return read
 
@@ -310,9 +314,9 @@ class InputData:
         while not is_input_valid:
             read = InputData.read_float(message)
             if read < min_value:
-                print(InputData.MINIMUM_ERROR % max_value)
+                print(InputData._MINIMUM_ERROR % max_value)
             elif read > max_value:
-                print(InputData.MAXIMUM_ERROR % max_value)
+                print(InputData._MAXIMUM_ERROR % max_value)
             else:
                 is_input_valid = True
 

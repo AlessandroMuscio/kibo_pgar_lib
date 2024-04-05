@@ -3,10 +3,10 @@ class PrettyStrings:
     This class contains various methods to better print strings to the terminal.
     """
 
-    SPACE = " "
-    HORIZONTAL_FRAME = "-"
-    VERTICAL_FRAME = "|"
-    NEW_LINE = "\n"
+    _SPACE = " "
+    _HORIZONTAL_FRAME = "-"
+    _VERTICAL_FRAME = "|"
+    _NEW_LINE = "\n"
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
@@ -19,7 +19,7 @@ class PrettyStrings:
 
     @staticmethod
     def frame(
-        to_frame: str, frame_length: int, centered: bool, vertical_frame: bool
+        to_frame: str, frame_length: int, centered: bool, _VERTICAL_FRAME: bool
     ) -> str:
         """Puts the given string in the center or in the beginning of the line surrounded by the horizontal frame above and below and, if needed, also the vertical frame before and after. It's required to specify a frame length for the horizontal frame.
 
@@ -30,7 +30,7 @@ class PrettyStrings:
 
             centered -> If the string needs to be centered or not.
 
-            vertical_frame -> If the vertical frame is needed or not.
+            _VERTICAL_FRAME -> If the vertical frame is needed or not.
 
         Returns:
             A string containing the framed original string.
@@ -39,59 +39,59 @@ class PrettyStrings:
         framed = []
 
         framed.append(
-            PrettyStrings.repeat_char(PrettyStrings.HORIZONTAL_FRAME, frame_length)
-            + PrettyStrings.NEW_LINE
+            PrettyStrings.repeat_char(PrettyStrings._HORIZONTAL_FRAME, frame_length)
+            + PrettyStrings._NEW_LINE
         )
 
-        if vertical_frame:
-            framed.append(PrettyStrings.VERTICAL_FRAME)
+        if _VERTICAL_FRAME:
+            framed.append(PrettyStrings._VERTICAL_FRAME)
 
         if centered:
             framed.append(
                 PrettyStrings.center(to_frame, frame_length - 2)
-                if vertical_frame
+                if _VERTICAL_FRAME
                 else PrettyStrings.center(to_frame, frame_length)
-                + PrettyStrings.NEW_LINE
+                + PrettyStrings._NEW_LINE
             )
         else:
             framed.append(
                 PrettyStrings.column(to_frame, frame_length - 2)
-                if vertical_frame
+                if _VERTICAL_FRAME
                 else PrettyStrings.column(to_frame, frame_length)
-                + PrettyStrings.NEW_LINE
+                + PrettyStrings._NEW_LINE
             )
 
-        if vertical_frame:
-            framed.append(PrettyStrings.VERTICAL_FRAME + PrettyStrings.NEW_LINE)
+        if _VERTICAL_FRAME:
+            framed.append(PrettyStrings._VERTICAL_FRAME + PrettyStrings._NEW_LINE)
 
         framed.append(
-            PrettyStrings.repeat_char(PrettyStrings.HORIZONTAL_FRAME, frame_length)
-            + PrettyStrings.NEW_LINE
+            PrettyStrings.repeat_char(PrettyStrings._HORIZONTAL_FRAME, frame_length)
+            + PrettyStrings._NEW_LINE
         )
 
         return "".join(framed)
 
     @staticmethod
     def column(to_columnize: str, width: int) -> str:
-        """Puts teh given string at the beginning of the line and adds spaces until the end of the line. If the string is too long for the width of the line, it will be cut off.
+        """Puts teh given string at the beginning of the line and adds _SPACEs until the end of the line. If the string is too long for the width of the line, it will be cut off.
 
         Params:
             to_columnize -> The string to put in column.
 
-            width -> The lenght of the line.
+            width -> The length of the line.
 
         Returns:
-            A string containing the columnated string.
+            A string containing the columned string.
         """
 
         to_columnize_length = len(to_columnize)
         char_to_print = min(width, to_columnize_length)
-        columnated = to_columnize[:char_to_print]
-        columnated += PrettyStrings.repeat_char(
-            PrettyStrings.SPACE, max(0, width - to_columnize_length)
+        columned = to_columnize[:char_to_print]
+        columned += PrettyStrings.repeat_char(
+            PrettyStrings._SPACE, max(0, width - to_columnize_length)
         )
 
-        return columnated
+        return columned
 
     @staticmethod
     def center(to_center: str, width: int) -> str:
@@ -100,7 +100,7 @@ class PrettyStrings:
         Params:
             to_center -> The string to center.
 
-            width -> The lenght of the line where to center the string.
+            width -> The length of the line where to center the string.
         """
 
         to_center_length = len(to_center)
@@ -109,13 +109,13 @@ class PrettyStrings:
         elif width == to_center_length:
             centred = to_center
         else:
-            white_spaces = width - to_center_length
-            spaces_before = white_spaces // 2
-            spaces_after = white_spaces - spaces_before
+            white__SPACEs = width - to_center_length
+            _SPACEs_before = white__SPACEs // 2
+            _SPACEs_after = white__SPACEs - _SPACEs_before
 
-            centred = PrettyStrings.repeat_char(PrettyStrings.SPACE, spaces_before)
+            centred = PrettyStrings.repeat_char(PrettyStrings._SPACE, _SPACEs_before)
             centred += to_center
-            centred += PrettyStrings.repeat_char(PrettyStrings.SPACE, spaces_after)
+            centred += PrettyStrings.repeat_char(PrettyStrings._SPACE, _SPACEs_after)
 
         return centred
 
@@ -145,4 +145,4 @@ class PrettyStrings:
             A string containing the isolated string.
         """
 
-        return PrettyStrings.NEW_LINE + to_isolate + PrettyStrings.NEW_LINE
+        return PrettyStrings._NEW_LINE + to_isolate + PrettyStrings._NEW_LINE

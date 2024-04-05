@@ -1,7 +1,8 @@
-import os
+# Standard Libraries
 import pickle
 
-from it.kibo.fp.lib.AnsiColors import AnsiColors
+# Internal Libraries
+from AnsiColors import AnsiColors
 
 
 class FileService:
@@ -9,10 +10,10 @@ class FileService:
     This class has useful methods to serialize/deserialize objects and save/load them to/from a file.
     """
 
-    RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
-    FILE_NOT_FOUND_ERROR = f"{RED_ATTENTION}\nCan't find the file "
-    READING_ERROR = f"{RED_ATTENTION}\nProblem reading the file "
-    WRITING_ERROR = f"{RED_ATTENTION}\nProblem writing the file "
+    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
+    _FILE_NOT_FOUND_ERROR = f"{_RED_ATTENTION}\nCan't find the file "
+    _READING_ERROR = f"{_RED_ATTENTION}\nProblem reading the file "
+    _WRITING_ERROR = f"{_RED_ATTENTION}\nProblem writing the file "
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
@@ -36,7 +37,7 @@ class FileService:
             with open(file_path, "wb") as f:
                 pickle.dump(to_save, f)
         except IOError as e:
-            print(FileService.WRITING_ERROR + file_path)
+            print(FileService._WRITING_ERROR + file_path)
             print(e)
 
     @staticmethod
@@ -55,9 +56,9 @@ class FileService:
             with open(file_path, "rb") as f:
                 read = pickle.load(f)
         except FileNotFoundError:
-            print(FileService.FILE_NOT_FOUND_ERROR + file_path)
+            print(FileService._FILE_NOT_FOUND_ERROR + file_path)
         except (IOError, pickle.UnpicklingError) as e:
-            print(FileService.READING_ERROR + file_path)
+            print(FileService._READING_ERROR + file_path)
             print(e)
 
         return object_class(read) if read else None
