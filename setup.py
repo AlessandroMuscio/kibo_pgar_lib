@@ -1,6 +1,6 @@
 """Used for setting up the package to be published to PyPI"""
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="kibo_unibs_fp_lib",
