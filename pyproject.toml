@@ -5,18 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "kibo_unibs_fp_lib"
 version = "1.0.0"
-authors = [
-  { name="Alessandro Muscio", email="a.muscio001@studenti.unibs.it" },
-]
-description = "Libreria UniBSFpLib modificata e convertita in Python da me"
-readme = "README.md"
+license = {file = "LICENSE.txt"}
+
+description = "UniBSFpLib modified, documented and converted in python."
+authors = [{ name="Alessandro Muscio", email="a.muscio001@studenti.unibs.it"}]
 requires-python = ">=3.8"
+readme = "README.md"
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: UniBS Students",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Typing :: Typed",
+    "Operating System :: OS Independent"
 ]
 
 [project.urls]
-Homepage = "https://github.com/AlessandroMuscio/kibo_unibs_fp_lib"
-Issues = "https://github.com/AlessandroMuscio/kibo_unibs_fp_lib/issues"
+source = "https://github.com/AlessandroMuscio/kibo_unibs_fp_lib"
+download = "https://pypi.org/project/kibo-unibs-fp-lib/#files"
+tracker = "https://github.com/AlessandroMuscio/kibo_unibs_fp_lib/issues"
