@@ -1,6 +1,6 @@
 """Module for the InputData class"""
 
-from ansi_colors import ansi_colors
+from kibo_unibs_fp_lib.ansi_colors import ansi_colors
 
 
 class InputData:
