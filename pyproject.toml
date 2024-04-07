@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kibo_unibs_fp_lib"
-version = "1.0.2"
+version = "1.0.3"
 license = {file = "LICENSE.txt"}
 
 description = "UniBSFpLib modified, documented and converted in python."
