@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kibo_unibs_fp_lib"
-version = "1.0.0"
+version = "1.0.2"
 license = {file = "LICENSE.txt"}
 
 description = "UniBSFpLib modified, documented and converted in python."
 authors = [{ name="Alessandro Muscio", email="a.muscio001@studenti.unibs.it"}]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 readme = "README.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
