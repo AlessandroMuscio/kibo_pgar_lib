@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="kibo_unibs_fp_lib",
-    version="1.0.3",
+    version="1.0.4",
     packages=find_packages(),
     description="UniBSFpLib modified, documented and converted in python.",
     author="Alessandro Muscio",
