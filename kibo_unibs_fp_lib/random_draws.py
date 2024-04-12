@@ -18,7 +18,7 @@ class RandomDraws:
             NotImplementedError
         """
 
-        raise NotImplementedError()
+        raise NotImplementedError("This class isn't instantiable!")
 
     @staticmethod
     def draw_integer(minimum: int, maximum: int) -> int:

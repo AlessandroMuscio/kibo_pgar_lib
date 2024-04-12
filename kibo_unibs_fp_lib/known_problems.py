@@ -14,7 +14,7 @@ class KnownProblems:
             NotImplementedError
         """
 
-        raise NotImplementedError()
+        raise NotImplementedError("This class isn't instantiable!")
 
     @staticmethod
     def mcd(a: int, b: int) -> int:

@@ -1,16 +1,19 @@
 """Module for the InputData class"""
 
-from kibo_unibs_fp_lib.ansi_colors import ansi_colors
+# Internal Libraries
+from ansi_colors import AnsiColors
 
 
 class InputData:
     """
-    This class can read a specific data type inserted in input by the user, while also allowing to 
+    This class can read a specific data type inserted in input by the user, while also allowing to
     make controls on the data inserted.
     """
 
-    _RED_ATTENTION = f"{ansi_colors["red"]}Attention!{ansi_colors["reset"]}"
-    _ALPHANUMERIC_CHARACTERS_ERROR = f"{_RED_ATTENTION}\nOnly alphanumeric characters are allowed."
+    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
+    _ALPHANUMERIC_CHARACTERS_ERROR = (
+        f"{_RED_ATTENTION}\nOnly alphanumeric characters are allowed."
+    )
     _EMPTY_STRING_ERROR = f"{_RED_ATTENTION}\nNo characters were inserted."
     _ALLOWED_CHARACTERS_ERROR = f"{_RED_ATTENTION}\nThe only allowed characters are: "
     _YES_ANSWERS = "yY"
@@ -19,8 +22,12 @@ class InputData:
     {_RED_ATTENTION}\nThe inserted data is in an incorrect format.
     An integer is required.
     """
-    _MINIMUM_ERROR = f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
-    _MAXIMUM_ERROR = f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
+    _MINIMUM_ERROR = (
+        f"{_RED_ATTENTION}\nA value greater than or equal to %.2f is required."
+    )
+    _MAXIMUM_ERROR = (
+        f"{_RED_ATTENTION}\nA value less than or equal to %.2f is required."
+    )
     _FLOAT_FORMAT_ERROR = f"""
     {_RED_ATTENTION}\nThe inserted data is in an incorrect format.
     A float is required.
@@ -33,12 +40,12 @@ class InputData:
             NotImplementedError
         """
 
-        raise NotImplementedError()
+        raise NotImplementedError("This class isn't instantiable!")
 
     @staticmethod
     def read_string(message: str, alphanumeric: bool) -> str:
-        """Prints message in the terminal and reads the text inserted by the user. If it isn't a 
-        string an error message is printed. It's also possible to select if the inserted text needs 
+        """Prints message in the terminal and reads the text inserted by the user. If it isn't a
+        string an error message is printed. It's also possible to select if the inserted text needs
         to be alphanumeric or not via the alphanumeric input variable.
 
         Params:
@@ -66,8 +73,8 @@ class InputData:
 
     @staticmethod
     def read_non_empty_string(message: str, alphanumeric: bool) -> str:
-        """Prints message in the terminal and reads the text inserted by the user, given that it 
-        isn't empty. If it isn't a string an error message is printed. It's also possible to select 
+        """Prints message in the terminal and reads the text inserted by the user, given that it
+        isn't empty. If it isn't a string an error message is printed. It's also possible to select
         if the inserted text needs to be alphanumeric or not via the alphanumeric input variable.
 
         Params:
@@ -116,7 +123,7 @@ class InputData:
         return read
 
     @staticmethod
-    def read_yer_or_no(question: str) -> bool:
+    def read_yes_or_no(question: str) -> bool:
         """Prompts the user with a question and expects a yes or no response.
 
         Params:
@@ -215,7 +222,7 @@ class InputData:
             max_value -> The maximum allowed value for the input.
 
         Returns:
-            The integer input by the user that is greater than or equal to min and less than or 
+            The integer input by the user that is greater than or equal to min and less than or
             equal to max.
         """
 
@@ -314,7 +321,7 @@ class InputData:
             max_value -> The maximum allowed value for the input.
 
         Returns:
-            The float input by the user that is greater than or equal to min and less than or equal 
+            The float input by the user that is greater than or equal to min and less than or equal
             to max.
         """
 

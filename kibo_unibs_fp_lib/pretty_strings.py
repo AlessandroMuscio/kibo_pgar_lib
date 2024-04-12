@@ -18,7 +18,7 @@ class PrettyStrings:
             NotImplementedError
         """
 
-        raise NotImplementedError()
+        raise NotImplementedError("This class isn't instantiable!")
 
     @staticmethod
     def frame(

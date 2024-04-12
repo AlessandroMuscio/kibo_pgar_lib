@@ -5,10 +5,10 @@ import os
 import time
 
 # Internal Libraries
-from kibo_unibs_fp_lib.ansi_colors import ansi_colors
-from kibo_unibs_fp_lib.input_data import InputData
-from kibo_unibs_fp_lib.known_problems import KnownProblems
-from kibo_unibs_fp_lib.pretty_strings import PrettyStrings
+from ansi_colors import AnsiColors
+from input_data import InputData
+from known_problems import KnownProblems
+from pretty_strings import PrettyStrings
 
 
 class Menu:
@@ -21,7 +21,7 @@ class Menu:
     _EXIT_ENTRY = "0. Exit"
     _INSERT_REQUEST = "> "
     _NEGATIVE_MILLIS_ERROR = (
-        f"{ansi_colors["red"]}Attention!{ansi_colors["reset"]}\nYou can't have negative time."
+        f"{AnsiColors.RED}Attention!{AnsiColors.RESET}\nYou can't have negative time."
     )
 
     def __init__(
@@ -31,8 +31,8 @@ class Menu:
         use_exit_entry: bool,
         centred_title: bool,
     ) -> None:
-        """Constructor that creates a Menu object specifying a title, the entries of the menu, if 
-        you want the exit entry or not, if you want the title centred, and the vertical frame will 
+        """Constructor that creates a Menu object specifying a title, the entries of the menu, if
+        you want the exit entry or not, if you want the title centred, and the vertical frame will
         be off by default. It will also automatically calculate the frame length.
 
         Params:
@@ -50,14 +50,14 @@ class Menu:
         self._title = title
         self._entries = entries
         self._use_exit_entry = use_exit_entry
-        self._frame_length = Menu._calculate_frame_length(title, entries)
+        self._frame_length = self._calculate_frame_length()
         self._centred_title = centred_title
         self._use_vertical_frame = False
 
     @property
     def use_vertical_frame(self) -> bool:
         """Getter of attribute use_vertical_frame.
-        
+
         Returns:
             A bool representing the current value of use_vertical_frame.
         """
@@ -67,14 +67,13 @@ class Menu:
     @use_vertical_frame.setter
     def use_vertical_frame(self, value: bool) -> None:
         """Setter of attribute use_vertical_frame.
-        
+
         Params:
             value -> The new value of use_vertical_frame.
         """
 
         self._use_vertical_frame = value
 
-    @staticmethod
     def _calculate_frame_length(title: str, entries: list[str]) -> int:
         """Calculates the frame length by measuring the length of the title and of all the entries
         of the menu, accounting for their number and the ". " string before the actual entry.

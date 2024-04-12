@@ -4,16 +4,16 @@
 import pickle
 
 # Internal Libraries
-from kibo_unibs_fp_lib.ansi_colors import ansi_colors
+from ansi_colors import AnsiColors
 
 
 class FileService:
     """
-    This class has useful methods to serialize/deserialize objects and save/load them to/from a 
+    This class has useful methods to serialize/deserialize objects and save/load them to/from a
     file.
     """
 
-    _RED_ATTENTION = f"{ansi_colors["red"]}Attention!{ansi_colors["reset"]}"
+    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
     _FILE_NOT_FOUND_ERROR = f"{_RED_ATTENTION}\nCan't find the file "
     _READING_ERROR = f"{_RED_ATTENTION}\nProblem reading the file "
     _WRITING_ERROR = f"{_RED_ATTENTION}\nProblem writing the file "
@@ -25,7 +25,7 @@ class FileService:
             NotImplementedError
         """
 
-        raise NotImplementedError()
+        raise NotImplementedError("This class isn't instantiable!")
 
     @staticmethod
     def serialize_object(file_path: str, to_save: object) -> None:
@@ -46,12 +46,12 @@ class FileService:
 
     @staticmethod
     def deserialize_object(file_path: str, object_class: type) -> object:
-        """Deserialize whatever object is saved in the given file. The deserialized file will be 
+        """Deserialize whatever object is saved in the given file. The deserialized file will be
         cast into the given class.
 
         Params:
             file_path -> The file path where to find the serialized object.
-            
+
             object_class -> The class to cast the serialized object into.
 
         Returns:
