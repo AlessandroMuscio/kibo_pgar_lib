@@ -5,10 +5,10 @@ import os
 import time
 
 # Internal Libraries
-from ansi_colors import AnsiColors
-from input_data import InputData
-from known_problems import KnownProblems
-from pretty_strings import PrettyStrings
+from kibo_unibs_fp_lib.ansi_colors import AnsiColors
+from kibo_unibs_fp_lib.input_data import InputData
+from kibo_unibs_fp_lib.known_problems import KnownProblems
+from kibo_unibs_fp_lib.pretty_strings import PrettyStrings
 
 
 class Menu:
@@ -74,7 +74,7 @@ class Menu:
 
         self._use_vertical_frame = value
 
-    def _calculate_frame_length(title: str, entries: list[str]) -> int:
+    def _calculate_frame_length(self) -> int:
         """Calculates the frame length by measuring the length of the title and of all the entries
         of the menu, accounting for their number and the ". " string before the actual entry.
 
@@ -87,9 +87,9 @@ class Menu:
             An integer representing the length of the frame.
         """
 
-        frame_length = len(title)
+        frame_length = len(self._title)
 
-        for i, entry in enumerate(entries):
+        for i, entry in enumerate(self._entries):
             frame_length = max(
                 frame_length, len(entry) + KnownProblems.count_integer_digits(i + 1) + 2
             )

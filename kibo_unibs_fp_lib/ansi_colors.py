@@ -1,3 +1,5 @@
+"""Module representing the ansi_colors enum"""
+
 # Standard Libraries
 from enum import StrEnum
 
