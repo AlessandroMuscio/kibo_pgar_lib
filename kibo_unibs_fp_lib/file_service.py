@@ -1,10 +1,10 @@
-"""Module representing the file_service class"""
+"""Module representing the FileService class"""
 
 # Standard Libraries
 import pickle
 
 # Internal Libraries
-from kibo_unibs_fp_lib.ansi_colors import AnsiColors
+from ansi_colors import RESET, AnsiFontColors, AnsiFontWeights, AnsiFontDecorations
 
 
 class FileService:
@@ -13,58 +13,61 @@ class FileService:
     file.
     """
 
-    _RED_ATTENTION = f"{AnsiColors.RED}Attention!{AnsiColors.RESET}"
-    _FILE_NOT_FOUND_ERROR = f"{_RED_ATTENTION}\nCan't find the file "
-    _READING_ERROR = f"{_RED_ATTENTION}\nProblem reading the file "
-    _WRITING_ERROR = f"{_RED_ATTENTION}\nProblem writing the file "
+    _CONSTRUCTOR_ERROR: str = (
+        f"This class {AnsiFontWeights.BOLD}is not{RESET} instantiable!"
+    )
+
+    _RED_ERROR = f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
+    _FILE_NOT_FOUND_ERROR = "Can't find the file %s\n"
+    _READING_ERROR = "Problem reading the file %s\n"
+    _WRITING_ERROR = "Problem writing the file %s\n"
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
 
-        Raises:
-            NotImplementedError
+        Raises
+        ------
+        - NotImplementedError
         """
 
-        raise NotImplementedError("This class isn't instantiable!")
+        raise NotImplementedError(FileService._CONSTRUCTOR_ERROR)
 
     @staticmethod
     def serialize_object(file_path: str, to_save: object) -> None:
-        """Serialize whatever object is given.
+        """Serialize to file whatever object is given.
 
-        Params:
-            file_path -> The file path where to save the serialized object.
-
-            to_save -> The object to serialize and save.
+        Params
+        ------
+        - file_path -> The file path where to save the serialized object.
+        - to_save -> The object to serialize and save.
         """
 
         try:
             with open(file_path, "wb") as f:
                 pickle.dump(to_save, f)
-        except IOError as e:
-            print(FileService._WRITING_ERROR + file_path)
-            print(e)
+        except IOError:
+            print(FileService._RED_ERROR)
+            print(FileService._WRITING_ERROR % file_path)
 
     @staticmethod
-    def deserialize_object(file_path: str, object_class: type) -> object:
-        """Deserialize whatever object is saved in the given file. The deserialized file will be
-        cast into the given class.
+    def deserialize_object(file_path: str) -> object:
+        """Deserialize whatever object is saved in the given file.
 
-        Params:
-            file_path -> The file path where to find the serialized object.
+        Params
+        ------
+        - file_path -> The file path where to find the serialized object.
 
-            object_class -> The class to cast the serialized object into.
-
-        Returns:
+        Returns
+        -------
             An instance of the deserialized object.
         """
 
         try:
             with open(file_path, "rb") as f:
-                read = pickle.load(f)
+                return pickle.load(f)
         except FileNotFoundError:
-            print(FileService._FILE_NOT_FOUND_ERROR + file_path)
-        except (IOError, pickle.UnpicklingError) as e:
-            print(FileService._READING_ERROR + file_path)
-            print(e)
-
-        return object_class(read) if read else None
+            print(FileService._RED_ERROR)
+            print(FileService._FILE_NOT_FOUND_ERROR % file_path)
+        except (IOError, pickle.UnpicklingError):
+            print(FileService._RED_ERROR)
+            print(FileService._READING_ERROR % file_path)
