@@ -69,7 +69,7 @@ class AnsiFontColors:
         - 0 to 7 are the standard colors, already provided as constants.
         - 8 to 15 are the brighter variants of the standard colors.
         - 16 to 231 are a LOT of shades of the aforementioned standard colors.
-        - 232 to 255 are the greyscale colors.
+        - 232 to 255 are the grayscale colors.
 
         Params
         ------
@@ -78,7 +78,7 @@ class AnsiFontColors:
 
         Returns
         -------
-            A string with the ansi code for colouring the back or foreground of the terminal.
+            A string with the ansi code for coloring the back or foreground of the terminal.
         """
         if n < 0 or n > 255:
             raise ValueError(AnsiFontColors._VALUE_ERROR)
@@ -102,7 +102,7 @@ class AnsiFontColors:
 
         Returns
         -------
-            A string with the ansi code for colouring the back or foreground of the terminal.
+            A string with the ansi code for coloring the back or foreground of the terminal.
         """
         if (
             (red < 0 or red > 255)
