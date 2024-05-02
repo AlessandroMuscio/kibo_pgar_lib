@@ -71,3 +71,5 @@ class FileService:
         except (IOError, pickle.UnpicklingError):
             print(FileService._RED_ERROR)
             print(FileService._READING_ERROR % file_path)
+
+        return None
