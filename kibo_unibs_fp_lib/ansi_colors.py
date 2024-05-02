@@ -110,11 +110,10 @@ class AnsiFontColors:
         -------
             A string with the ansi code for coloring the back or foreground of the terminal.
         """
-        if (
-            (red < 0 or red > 255)
-            or (green < 0 or green > 255)
-            or (blue < 0 or blue > 255)
-        ):
+        red_error: bool = red < 0 or red > 255
+        blue_error: bool = blue < 0 or blue > 255
+        green_error: bool = green < 0 or green > 255
+        if red_error or blue_error or green_error:
             raise ValueError(AnsiFontColors._VALUE_ERROR)
 
         sgr: str = "48" if apply_to_background else "38"

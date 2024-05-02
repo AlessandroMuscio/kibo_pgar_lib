@@ -5,7 +5,7 @@ import os
 import time
 
 # Internal Libraries
-from kibo_unibs_fp_lib.ansi_colors import AnsiColors
+from kibo_unibs_fp_lib.ansi_colors import AnsiFontColors
 from kibo_unibs_fp_lib.input_data import InputData
 from kibo_unibs_fp_lib.known_problems import KnownProblems
 from kibo_unibs_fp_lib.pretty_strings import PrettyStrings
@@ -20,9 +20,7 @@ class Menu:
     _NEW_LINE = "\n"
     _EXIT_ENTRY = "0. Exit"
     _INSERT_REQUEST = "> "
-    _NEGATIVE_MILLIS_ERROR = (
-        f"{AnsiColors.RED}Attention!{AnsiColors.RESET}\nYou can't have negative time."
-    )
+    _NEGATIVE_MILLIS_ERROR = f"{AnsiFontColors.RED}Attention!{AnsiFontColors.RESET}\nYou can't have negative time."
 
     def __init__(
         self,
