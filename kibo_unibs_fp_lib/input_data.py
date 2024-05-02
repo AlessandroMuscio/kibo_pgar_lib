@@ -11,7 +11,7 @@ from kibo_unibs_fp_lib.ansi_colors import (
 
 class InputData:
     """
-    This class can read a specific data type inserted in input by the user, while also allowing to 
+    This class can read a specific data type inserted in input by the user, while also allowing to
     make controls on the data inserted and printing errors to the user.
     """
 
@@ -24,21 +24,21 @@ class InputData:
         f"Only {AnsiFontWeights.BOLD}alphanumeric{RESET} characters are allowed.\n"
     )
     _EMPTY_STRING_ERROR: str = (
-        f"No {AnsiFontWeights.BOLD}characters{RESET} or only {AnsiFontWeights.BOLD}whitespace 
-        {RESET} were inserted.\n"
+        f"No {AnsiFontWeights.BOLD}characters{RESET} or only \
+            {AnsiFontWeights.BOLD}whitespaces{RESET} were inserted.\n"
     )
     _ALLOWED_CHARACTERS_ERROR: str = "The only allowed characters are: %s\n"
     _YES_ANSWERS: str = "yY"
     _NO_ANSWERS: str = "nN"
     _INTEGER_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An 
-        {AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
+        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An \
+            {AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
     )
     _MINIMUM_ERROR: str = "A value greater than or equal to %.2f is required.\n"
     _MAXIMUM_ERROR: str = "A value less than or equal to %.2f is required.\n"
     _FLOAT_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A 
-        {AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
+        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A \
+            {AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
     )
 
     def __init__(self) -> None:
@@ -52,8 +52,8 @@ class InputData:
 
     @staticmethod
     def read_string(message: str, alphanumeric: bool = False) -> str:
-        """Prints message in the terminal and reads the text inserted by the user. It's also 
-        possible to select if the inserted text needs to be alphanumeric or not via the 
+        """Prints message in the terminal and reads the text inserted by the user. It's also
+        possible to select if the inserted text needs to be alphanumeric or not via the
         alphanumeric variable.
 
         Params
@@ -82,8 +82,8 @@ class InputData:
 
     @staticmethod
     def read_non_empty_string(message: str, alphanumeric: bool = False) -> str:
-        """Prints message in the terminal and reads the text inserted by the user, given that it 
-        isn't empty. It's also possible to select if the inserted text needs to be alphanumeric or 
+        """Prints message in the terminal and reads the text inserted by the user, given that it
+        isn't empty. It's also possible to select if the inserted text needs to be alphanumeric or
         not via the alphanumeric variable.
 
         Params
@@ -109,7 +109,7 @@ class InputData:
 
     @staticmethod
     def read_char(message: str, allowed: str = None) -> str:
-        """Read a single character input from the user. It's also possible to give a list, in the 
+        """Read a single character input from the user. It's also possible to give a list, in the
         form of a string, of the possible allowed characters.
 
         Params
@@ -141,8 +141,8 @@ class InputData:
     def read_yes_or_no(question: str) -> bool:
         """Prompts the user with a question and expects a yes or no response.
 
-        The idea is to give the question the usual unix terminal aspects, where the question is 
-        followed by square brackets and the two possible answers, the upper case one is the default 
+        The idea is to give the question the usual unix terminal aspects, where the question is
+        followed by square brackets and the two possible answers, the upper case one is the default
         if no answer is given.
 
         Params
@@ -251,7 +251,7 @@ class InputData:
 
         Returns
         -------
-            The integer input by the user that is greater than or equal to min_value and less than 
+            The integer input by the user that is greater than or equal to min_value and less than
             or equal to max_value.
         """
         is_input_out_of_range: bool = True
@@ -358,7 +358,7 @@ class InputData:
 
         Returns
         -------
-            The float input by the user that is greater than or equal to min_value and less than or 
+            The float input by the user that is greater than or equal to min_value and less than or
             equal to max_value.
         """
         is_input_out_of_range: bool = True
