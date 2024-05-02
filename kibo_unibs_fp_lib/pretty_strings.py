@@ -121,7 +121,8 @@ class PrettyStrings:
 
     @staticmethod
     def center(to_center: str, width: int) -> str:
-        """Puts the given string in the center of the line of the given width. If the string is too long it will be cut off.
+        """Puts the given string in the center of the line of the given width. If the string is too
+        long it will be cut off.
 
         Params
         ------
