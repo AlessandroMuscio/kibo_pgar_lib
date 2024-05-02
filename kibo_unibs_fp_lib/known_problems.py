@@ -1,5 +1,7 @@
 """Module for the KnownProblems class"""
 
+from kibo_unibs_fp_lib.ansi_colors import RESET, AnsiFontWeights
+
 
 class KnownProblems:
     """
@@ -7,28 +9,33 @@ class KnownProblems:
     to go watch the solution on StackOverflow even though you know you've already solved them.
     """
 
+    _CONSTRUCTOR_ERROR: str = (
+        f"This class {AnsiFontWeights.BOLD}is not{RESET} instantiable!"
+    )
+    _VALUES_ERROR: str = "Too few arguments were passed!"
+
     def __init__(self) -> None:
-        """Prevents instantiation of this class
+        """Prevents the instantiation of this class.
 
-        Raises:
-            NotImplementedError
+        Raises
+        ------
+        - NotImplementedError
         """
-
-        raise NotImplementedError("This class isn't instantiable!")
+        raise NotImplementedError(KnownProblems._CONSTRUCTOR_ERROR)
 
     @staticmethod
-    def mcd(a: int, b: int) -> int:
+    def _mcd(a: int, b: int) -> int:
         """Finds the MCD (Maximum Common Divider) between two integers.
 
-        Params:
-            a -> The first number to calculate the MCD.
+        Params
+        ------
+        - a -> The first number to calculate the MCD.
+        - b -> The second number to calculate the MCD.
 
-            b -> The second number to calculate the MCD.
-
-        Returns:
+        Returns
+        -------
             An integer representing the MCD.
         """
-
         while a != 0 and b != 0:
             if a > b:
                 a %= b
@@ -38,63 +45,71 @@ class KnownProblems:
         return b if a == 0 else a
 
     @staticmethod
-    def mcd_array(values: list[int]) -> int:
+    def mcd(values: list[int]) -> int:
         """Finds the MCD (Maximum Common Divider) between a list of integers.
 
-        Params:
-            values -> The values used to find the MCD.
+        Params
+        ------
+        - values -> The values used to find the MCD.
 
-        Returns:
-            An integer representing the MCD between all the values. If values is None or an empty
-            array, -1 will be returned.
+        Returns
+        -------
+            An integer representing the MCD between all the values.
+
+        Raises
+        ------
+        - ValueError -> If less than two values are given.
         """
+        if not values or len(values) < 2:
+            raise ValueError(KnownProblems._VALUES_ERROR)
 
-        if not values:
-            return -1
-
-        mcd = values[0]
+        mcd: int = values[0]
 
         for value in values[1:]:
-            mcd = KnownProblems.mcd(mcd, value)
+            mcd = KnownProblems._mcd(mcd, value)
 
         return mcd
 
     @staticmethod
-    def mcm(a: int, b: int) -> int:
+    def _mcm(a: int, b: int) -> int:
         """Finds the MCM (Minimum Common Multiplier) between two numbers.
 
-        Params:
-            a -> The first number to calculate the MCM.
+        Params
+        ------
+        - a -> The first number to calculate the MCM.
+        - b -> The second number to calculate the MCM.
 
-            b -> The second number to calculate the MCM.
-
-        Returns:
+        Returns
+        -------
             An integer representing the MCM.
         """
-
-        mcd = KnownProblems.mcd(a, b)
+        mcd: int = KnownProblems._mcd(a, b)
 
         return (a * b) // mcd
 
     @staticmethod
-    def mcm_array(values: list[int]) -> int:
+    def mcm(values: list[int]) -> int:
         """Finds the MCM (Minimum Common Multiplier) between a list of integers.
 
-        Params:
-            values -> The values used to find the MCM.
+        Params
+        ------
+        - values -> The values used to find the MCM.
 
-        Returns:
-            An integer representing the MCM between all the values. If values is None or an empty
-            array, -1 will be returned.
+        Returns
+        -------
+            An integer representing the MCM between all the values.
+
+        Raises
+        ------
+        - ValueError -> If less than two values are given.
         """
+        if not values or len(values) < 2:
+            raise ValueError(KnownProblems._VALUES_ERROR)
 
-        if not values:
-            return -1
-
-        mcm = values[0]
+        mcm: int = values[0]
 
         for value in values[1:]:
-            mcm = KnownProblems.mcm(mcm, value)
+            mcm = KnownProblems._mcm(mcm, value)
 
         return mcm
 
@@ -102,27 +117,31 @@ class KnownProblems:
     def count_integer_digits(n: int) -> int:
         """Counts the number of digits of an integer.
 
-        Params:
-            n -> The number to calculate the digits.
+        Params
+        ------
+        - n -> The number to calculate the digits.
 
-        Returns:
+        Returns
+        -------
             An integer representing the number of digits of n.
         """
-
         return len(str(abs(n)))
 
     @staticmethod
     def count_decimal_digits(n: float) -> int:
-        """
-        Counts the number of decimal digits in a float.
+        """Counts the number of decimal digits in a float.
 
-        Params:
-            n -> The number to calculate the decimal digits.
+        Params
+        ------
+        - n -> The number to calculate the decimal digits.
 
-        Returns:
+        Returns
+        -------
             An integer representing the number of decimal digits of n.
         """
+        splitted_number: list[str] = str(abs(n)).split(".")
 
-        decimal_str = str(abs(n)).split(".")[1]
+        if len(splitted_number) < 2:
+            return 0
 
-        return len(decimal_str) if decimal_str else 0
+        return len(splitted_number[1])
