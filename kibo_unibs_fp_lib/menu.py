@@ -1,7 +1,7 @@
 """Module for the Menu class"""
 
 # Standard Libraries
-import os
+# import os
 import time
 
 # Internal Libraries
@@ -20,7 +20,7 @@ class Menu:
     _NEW_LINE = "\n"
     _EXIT_ENTRY = "0. Exit"
     _INSERT_REQUEST = "> "
-    _NEGATIVE_MILLIS_ERROR = f"{AnsiFontColors.RED}Attention!{AnsiFontColors.RESET}\nYou can't have negative time."
+    _NEGATIVE_MILLIS_ERROR = f"Impossible to wait for a negative time."
 
     def __init__(
         self,
@@ -29,22 +29,15 @@ class Menu:
         use_exit_entry: bool,
         centred_title: bool,
     ) -> None:
-        """Constructor that creates a Menu object specifying a title, the entries of the menu, if
-        you want the exit entry or not, if you want the title centred, and the vertical frame will
-        be off by default. It will also automatically calculate the frame length.
+        """Creates a Menu object specifying some configuration parameters.
 
-        Params:
-            title -> Represents the title of the menu.
-
-            entries -> Represents the entries of the menu.
-
-            use_exit_entry -> If you want the exit entry or not.
-
-            centred_title -> If you want the title to be centred or not.
-
-            use_vertical_frame -> If you want to use the vertical frame or not.
+        Params
+        ------
+        - title -> The title of the menu.
+        - entries -> The entries, options, of the menu.
+        - use_exit_entry -> If you want the exit entry or not.
+        - centred_title -> If you want the title to be centred or not.
         """
-
         self._title = title
         self._entries = entries
         self._use_exit_entry = use_exit_entry
@@ -54,37 +47,20 @@ class Menu:
 
     @property
     def use_vertical_frame(self) -> bool:
-        """Getter of attribute use_vertical_frame.
-
-        Returns:
-            A bool representing the current value of use_vertical_frame.
-        """
-
         return self._use_vertical_frame
 
     @use_vertical_frame.setter
     def use_vertical_frame(self, value: bool) -> None:
-        """Setter of attribute use_vertical_frame.
-
-        Params:
-            value -> The new value of use_vertical_frame.
-        """
-
         self._use_vertical_frame = value
 
     def _calculate_frame_length(self) -> int:
         """Calculates the frame length by measuring the length of the title and of all the entries
         of the menu, accounting for their number and the ". " string before the actual entry.
 
-        Params:
-            title -> The title of the menu.
-
-            entries -> The entries of the menu.
-
-        Returns:
+        Returns
+        -------
             An integer representing the length of the frame.
         """
-
         frame_length = len(self._title)
 
         for i, entry in enumerate(self._entries):
@@ -95,10 +71,7 @@ class Menu:
         return frame_length + 10  # Adding a bit of extra space
 
     def _print_menu(self) -> None:
-        """
-        Prints the menu: first the framed title and then all the entries.
-        """
-
+        """Prints the menu, the framed title, followed by all the entries."""
         menu = []
 
         menu.append(
@@ -123,10 +96,10 @@ class Menu:
     def choose(self) -> int:
         """Prints the menu and lets the user choose an option from it.
 
-        Returns:
+        Returns
+        -------
             An integer representing the choice of the user.
         """
-
         self._print_menu()
 
         if self._use_exit_entry:
@@ -140,32 +113,34 @@ class Menu:
 
     @staticmethod
     def clear_console() -> None:
-        """
-        Clear the console screen.
-        """
-
-        os.system("cls" if os.name == "nt" else "clear")
+        """Clears the console screen."""
+        # os.system("cls" if os.name == "nt" else "clear")
+        print(AnsiFontColors.CLEAR)
 
     @staticmethod
     def wait(milliseconds: int) -> None:
         """Stops the program for a certain amount of milliseconds.
 
-        Params:
-            milliseconds -> The number of milliseconds to stop the program.
-        """
+        Params
+        ------
+        - milliseconds -> The number of milliseconds to stop the program.
 
+        Raises
+        ------
+        - ValueError -> When the milliseconds are negative.
+        """
         if milliseconds < 0:
-            print(Menu._NEGATIVE_MILLIS_ERROR)
-            return
+            raise ValueError(Menu._NEGATIVE_MILLIS_ERROR)
 
         time.sleep(milliseconds / 1000)
 
     @staticmethod
     def loading_message(message: str) -> None:
-        """Prints a certain message simulating a loading by adding dots slowly.
+        """Prints a certain message simulating a loading by adding dots to it slowly.
 
-        Params:
-            message -> The message to print.
+        Params
+        ------
+        - message -> The message to print.
         """
 
         print(message, end="", flush=True)
@@ -173,4 +148,5 @@ class Menu:
             Menu.wait(1000)
             print(".", end="", flush=True)
 
+        Menu.wait(1000)
         Menu.clear_console()
