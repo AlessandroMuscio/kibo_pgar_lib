@@ -57,7 +57,7 @@ class FileService:
 
         Returns
         -------
-            An instance of the deserialized object.
+        An instance of the deserialized object.
         """
 
         try:

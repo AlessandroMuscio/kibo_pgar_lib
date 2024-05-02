@@ -30,7 +30,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the MCD.
+        An integer representing the MCD.
         """
         while a != 0 and b != 0:
             if a > b:
@@ -50,7 +50,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the MCD between all the values.
+        An integer representing the MCD between all the values.
 
         Raises
         ------
@@ -77,7 +77,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the MCM.
+        An integer representing the MCM.
         """
         mcd: int = KnownProblems._mcd(a, b)
 
@@ -93,7 +93,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the MCM between all the values.
+        An integer representing the MCM between all the values.
 
         Raises
         ------
@@ -119,7 +119,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the number of digits of n.
+        An integer representing the number of digits of n.
         """
         return len(str(abs(n)))
 
@@ -133,7 +133,7 @@ class KnownProblems:
 
         Returns
         -------
-            An integer representing the number of decimal digits of n.
+        An integer representing the number of decimal digits of n.
         """
         splitted_number: list[str] = str(abs(n)).split(".")
 

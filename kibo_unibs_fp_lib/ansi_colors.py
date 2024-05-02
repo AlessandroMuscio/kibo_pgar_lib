@@ -83,7 +83,7 @@ class AnsiFontColors:
 
         Returns
         -------
-            A string with the ansi code for coloring the back or foreground of the terminal.
+        A string with the ansi code for coloring the back or foreground of the terminal.
         """
         if n < 0 or n > 255:
             raise ValueError(AnsiFontColors._VALUE_ERROR)
@@ -108,7 +108,7 @@ class AnsiFontColors:
 
         Returns
         -------
-            A string with the ansi code for coloring the back or foreground of the terminal.
+        A string with the ansi code for coloring the back or foreground of the terminal.
         """
         red_error: bool = red < 0 or red > 255
         blue_error: bool = blue < 0 or blue > 255

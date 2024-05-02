@@ -61,7 +61,7 @@ class InputData:
 
         Returns
         -------
-            A string representing the user input.
+        A string representing the user input.
         """
         if not alphanumeric:
             return input(message)
@@ -91,7 +91,7 @@ class InputData:
 
         Returns
         -------
-            A string representing the user input.
+        A string representing the user input.
         """
         is_empty: bool = True
 
@@ -117,7 +117,7 @@ class InputData:
 
         Returns
         -------
-            The single character input by the user.
+        The single character input by the user.
         """
         if not allowed:
             return InputData.read_non_empty_string(message, False)[0]
@@ -149,7 +149,7 @@ class InputData:
 
         Returns
         -------
-            True if the user respond with 'y' or 'Y', False otherwise.
+        True if the user respond with 'y' or 'Y', False otherwise.
         """
         question = (
             f"{question}? [{InputData._YES_ANSWERS[1]}/{InputData._NO_ANSWERS[0]}] "
@@ -171,7 +171,7 @@ class InputData:
 
         Returns
         -------
-            The integer input by the user.
+        The integer input by the user.
         """
         is_integer: bool = False
 
@@ -196,7 +196,7 @@ class InputData:
 
         Returns
         -------
-            The integer input by the user that is greater than or equal to min_value.
+        The integer input by the user that is greater than or equal to min_value.
         """
         is_input_out_of_range: bool = True
 
@@ -222,7 +222,7 @@ class InputData:
 
         Returns
         -------
-            The integer input by the user that is less than or equal to max_value.
+        The integer input by the user that is less than or equal to max_value.
         """
         is_input_out_of_range: bool = True
 
@@ -249,8 +249,8 @@ class InputData:
 
         Returns
         -------
-            The integer input by the user that is greater than or equal to min_value and less than
-            or equal to max_value.
+        The integer input by the user that is greater than or equal to min_value and less than or
+        equal to max_value.
         """
         is_input_out_of_range: bool = True
 
@@ -278,7 +278,7 @@ class InputData:
 
         Returns
         -------
-            The float input by the user.
+        The float input by the user.
         """
         is_float: bool = False
 
@@ -303,7 +303,7 @@ class InputData:
 
         Returns
         -------
-            The float input by the user that is greater than or equal to min_value.
+        The float input by the user that is greater than or equal to min_value.
         """
         is_input_out_of_range: bool = True
 
@@ -329,7 +329,7 @@ class InputData:
 
         Returns
         -------
-            The float input by the user that is less than or equal to max_value.
+        The float input by the user that is less than or equal to max_value.
         """
         is_input_out_of_range: bool = True
 
@@ -356,8 +356,8 @@ class InputData:
 
         Returns
         -------
-            The float input by the user that is greater than or equal to min_value and less than or
-            equal to max_value.
+        The float input by the user that is greater than or equal to min_value and less than or
+        equal to max_value.
         """
         is_input_out_of_range: bool = True
 

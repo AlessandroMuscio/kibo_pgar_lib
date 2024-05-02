@@ -51,7 +51,7 @@ class Menu:
 
         Returns
         -------
-            A bool representing the attribute value.
+        A bool representing the attribute value.
         """
         return self._use_vertical_frame
 
@@ -71,7 +71,7 @@ class Menu:
 
         Returns
         -------
-            An integer representing the length of the frame.
+        An integer representing the length of the frame.
         """
         frame_length = len(self._title)
 
@@ -110,7 +110,7 @@ class Menu:
 
         Returns
         -------
-            An integer representing the choice of the user.
+        An integer representing the choice of the user.
         """
         self._print_menu()
 
