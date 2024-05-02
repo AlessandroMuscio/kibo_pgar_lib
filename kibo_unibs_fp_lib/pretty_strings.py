@@ -4,11 +4,11 @@
 class PrettyStrings:
     """This class contains various methods to prettify print strings to the terminal."""
 
+    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
     _SPACE = " "
     _HORIZONTAL_FRAME = "-"
     _VERTICAL_FRAME = "|"
     _NEW_LINE = "\n"
-    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
 
     def __init__(self) -> None:
         """Prevents the instantiation of this class.
