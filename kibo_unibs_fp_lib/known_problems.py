@@ -1,7 +1,5 @@
 """Module for the KnownProblems class"""
 
-from kibo_unibs_fp_lib.ansi_colors import RESET, AnsiFontWeights
-
 
 class KnownProblems:
     """
@@ -9,9 +7,7 @@ class KnownProblems:
     to go watch the solution on StackOverflow even though you know you've already solved them.
     """
 
-    _CONSTRUCTOR_ERROR: str = (
-        f"This class {AnsiFontWeights.BOLD}is not{RESET} instantiable!"
-    )
+    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
     _VALUES_ERROR: str = "Too few arguments were passed!"
 
     def __init__(self) -> None:

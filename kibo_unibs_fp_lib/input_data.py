@@ -15,9 +15,7 @@ class InputData:
     make controls on the data inserted and printing errors to the user.
     """
 
-    _CONSTRUCTOR_ERROR: str = (
-        f"This class {AnsiFontWeights.BOLD}is not{RESET} instantiable!"
-    )
+    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
     _RED_ERROR: str = f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
 
     _ALPHANUMERIC_CHARACTERS_ERROR: str = (

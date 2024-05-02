@@ -13,9 +13,7 @@ class FileService:
     file.
     """
 
-    _CONSTRUCTOR_ERROR: str = (
-        f"This class {AnsiFontWeights.BOLD}is not{RESET} instantiable!"
-    )
+    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
 
     _RED_ERROR = f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
     _FILE_NOT_FOUND_ERROR = "Can't find the file %s\n"
