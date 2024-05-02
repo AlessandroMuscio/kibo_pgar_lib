@@ -4,7 +4,7 @@
 import pickle
 
 # Internal Libraries
-from ansi_colors import RESET, AnsiFontColors, AnsiFontWeights, AnsiFontDecorations
+from kibo_unibs_fp_lib.ansi_colors import RESET, AnsiFontColors, AnsiFontWeights
 
 
 class FileService:

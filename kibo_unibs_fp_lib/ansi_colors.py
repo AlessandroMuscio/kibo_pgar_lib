@@ -34,11 +34,14 @@ class AnsiFontDecorations(StrEnum):
 class AnsiFontColors:
     """Used for accessing a list of color customization for writing in the terminal.
 
-    Only the standard 8 colors for back and foreground are implemented as constants, plus the code for clearing the terminal and inverting back and foreground. For more color customization see the specified methods.
+    Only the standard 8 colors for back and foreground are implemented as constants, plus the code 
+    for clearing the terminal and inverting back and foreground. For more color customization see 
+    the specified methods.
     """
 
     _VALUE_ERROR: str = (
-        f"Only values from {AnsiFontWeights.BOLD}0{RESET} to {AnsiFontWeights.BOLD}255{RESET} are allowed!"
+        f"Only values from {AnsiFontWeights.BOLD}0{RESET} to {AnsiFontWeights.BOLD}255{RESET} are 
+        allowed!"
     )
 
     INVERT: str = "\u001b[7m"
@@ -62,7 +65,8 @@ class AnsiFontColors:
 
     @staticmethod
     def eight_bit_color(n: int, apply_to_background: bool = False) -> str:
-        """For a better understanding look here https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
+        """For a better understanding look here 
+        https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
 
         The general rules are:
         - Only numbers from 0 to 255 are allowed.
@@ -74,7 +78,8 @@ class AnsiFontColors:
         Params
         ------
         - n -> An integer representing the 8-bit color.
-        - apply_to_background -> If the color should be applied to the background or the foreground, defaulted to False.
+        - apply_to_background -> If the color should be applied to the background or the 
+        foreground, defaulted to False.
 
         Returns
         -------
@@ -98,7 +103,8 @@ class AnsiFontColors:
         - red -> The red value of the color from 0 to 255.
         - blue -> The blue value of the color from 0 to 255.
         - green -> The green value of the color from 0 to 255.
-        - apply_to_background -> If the color should be applied to the background or the foreground, defaulted to False.
+        - apply_to_background -> If the color should be applied to the background or the 
+        foreground, defaulted to False.
 
         Returns
         -------
