@@ -20,7 +20,7 @@ class Menu:
     _NEW_LINE = "\n"
     _EXIT_ENTRY = "0. Exit"
     _INSERT_REQUEST = "> "
-    _NEGATIVE_MILLIS_ERROR = f"Impossible to wait for a negative time."
+    _NEGATIVE_MILLIS_ERROR = "Impossible to wait for a negative time."
 
     def __init__(
         self,
@@ -47,10 +47,22 @@ class Menu:
 
     @property
     def use_vertical_frame(self) -> bool:
+        """Gets the value of the use_vertical_frame attribute.
+
+        Returns
+        -------
+            A bool representing the attribute value.
+        """
         return self._use_vertical_frame
 
     @use_vertical_frame.setter
     def use_vertical_frame(self, value: bool) -> None:
+        """Sets the value of the use_vertical_frame attribute.
+
+        Params
+        ------
+        - value -> The value to set the attribute to.
+        """
         self._use_vertical_frame = value
 
     def _calculate_frame_length(self) -> int:
