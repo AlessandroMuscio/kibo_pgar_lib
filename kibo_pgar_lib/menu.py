@@ -5,10 +5,10 @@
 import time
 
 # Internal Libraries
-from kibo_unibs_fp_lib.ansi_colors import AnsiFontColors
-from kibo_unibs_fp_lib.input_data import InputData
-from kibo_unibs_fp_lib.known_problems import KnownProblems
-from kibo_unibs_fp_lib.pretty_strings import PrettyStrings
+from kibo_pgar_lib.ansi_colors import AnsiFontColors
+from kibo_pgar_lib.input_data import InputData
+from kibo_pgar_lib.known_problems import KnownProblems
+from kibo_pgar_lib.pretty_strings import PrettyStrings
 
 
 class Menu:
