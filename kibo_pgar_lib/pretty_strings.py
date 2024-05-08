@@ -39,51 +39,32 @@ class PrettyStrings:
         A string containing the framed original string.
         """
         framed: list[str] = []
-        horizontal_frame: list[str] = "".join(
-            [
-                PrettyStrings.repeat_char(
-                    PrettyStrings._HORIZONTAL_FRAME, frame_length
-                ),
-                PrettyStrings._NEW_LINE,
-            ]
-        )
+        horizontal_frame: list[str] = [
+            PrettyStrings.repeat_char(PrettyStrings._HORIZONTAL_FRAME, frame_length),
+            PrettyStrings._NEW_LINE,
+        ]
 
-        framed.append(horizontal_frame)
+        framed.extend(horizontal_frame)
 
         if vertical_frame:
-            framed.append(PrettyStrings._VERTICAL_FRAME)
-
-        to_append: str
-        if centered:
-            to_append = (
+            to_append: str = PrettyStrings._VERTICAL_FRAME
+            to_append += (
                 PrettyStrings.center(to_frame, frame_length - 2)
-                if vertical_frame
-                else "".join(
-                    [
-                        PrettyStrings.center(to_frame, frame_length),
-                        PrettyStrings._NEW_LINE,
-                    ]
-                )
+                if centered
+                else PrettyStrings.column(to_frame, frame_length - 2)
             )
+            to_append += PrettyStrings._VERTICAL_FRAME + PrettyStrings._NEW_LINE
         else:
-            to_append = (
-                PrettyStrings.column(to_frame, frame_length - 2)
-                if vertical_frame
-                else "".join(
-                    [
-                        PrettyStrings.column(to_frame, frame_length),
-                        PrettyStrings._NEW_LINE,
-                    ]
-                )
+            to_append: str = (
+                PrettyStrings.center(to_frame, frame_length)
+                if centered
+                else PrettyStrings.column(to_frame, frame_length)
             )
+            to_append += PrettyStrings._NEW_LINE
+
         framed.append(to_append)
 
-        if vertical_frame:
-            framed.append(
-                "".join([PrettyStrings._VERTICAL_FRAME, PrettyStrings._NEW_LINE])
-            )
-
-        framed.append(horizontal_frame)
+        framed.extend(horizontal_frame)
 
         return "".join(framed)
 
@@ -112,9 +93,7 @@ class PrettyStrings:
         )
 
         columned.append(
-            PrettyStrings.repeat_char(
-                PrettyStrings._SPACE, max(0, width - to_columnize_length)
-            )
+            PrettyStrings.repeat_char(PrettyStrings._SPACE, width - to_columnize_length)
         )
 
         return "".join(columned)
@@ -185,3 +164,12 @@ class PrettyStrings:
         A string containing the isolated string.
         """
         return f"{PrettyStrings._NEW_LINE}{to_isolate}{PrettyStrings._NEW_LINE}"
+
+
+def main() -> None:
+    print(PrettyStrings.frame("Cock", 14, True, True))
+    print("Omega")
+
+
+if __name__ == "__main__":
+    main()
