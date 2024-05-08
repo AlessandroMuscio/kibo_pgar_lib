@@ -70,7 +70,7 @@ class InputData:
         while not is_alphanumeric:
             read: str = input(message)
 
-            is_alphanumeric = read.isalnum()
+            is_alphanumeric = read.isalnum() if read else True
 
             if not is_alphanumeric:
                 print(InputData._RED_ERROR)
