@@ -22,21 +22,21 @@ class InputData:
         f"Only {AnsiFontWeights.BOLD}alphanumeric{RESET} characters are allowed.\n"
     )
     _EMPTY_STRING_ERROR: str = (
-        f"No {AnsiFontWeights.BOLD}characters{RESET} or only \
-            {AnsiFontWeights.BOLD}whitespaces{RESET} were inserted.\n"
+        f"No {AnsiFontWeights.BOLD}characters{RESET} or only {AnsiFontWeights.BOLD}whitespaces"
+        f"{RESET} were inserted.\n"
     )
     _ALLOWED_CHARACTERS_ERROR: str = "The only allowed characters are: %s\n"
     _YES_ANSWERS: str = "yY"
     _NO_ANSWERS: str = "nN"
     _INTEGER_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An \
-            {AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
+        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An "
+        f"{AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
     )
     _MINIMUM_ERROR: str = "A value greater than or equal to %.2f is required.\n"
     _MAXIMUM_ERROR: str = "A value less than or equal to %.2f is required.\n"
     _FLOAT_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A \
-            {AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
+        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A "
+        f"{AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
     )
 
     def __init__(self) -> None:

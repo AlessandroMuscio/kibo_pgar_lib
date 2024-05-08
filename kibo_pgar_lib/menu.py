@@ -1,7 +1,6 @@
 """Module for the Menu class"""
 
 # Standard Libraries
-# import os
 import time
 
 # Internal Libraries
@@ -126,7 +125,6 @@ class Menu:
     @staticmethod
     def clear_console() -> None:
         """Clears the console screen."""
-        # os.system("cls" if os.name == "nt" else "clear")
         print(AnsiFontColors.CLEAR)
 
     @staticmethod

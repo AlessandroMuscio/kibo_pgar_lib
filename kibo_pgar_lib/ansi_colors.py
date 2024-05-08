@@ -40,8 +40,8 @@ class AnsiFontColors:
     """
 
     _VALUE_ERROR: str = (
-        f"Only values from {AnsiFontWeights.BOLD}0{RESET} to \
-            {AnsiFontWeights.BOLD}255{RESET} are allowed!"
+        f"Only values from {AnsiFontWeights.BOLD}0{RESET} to {AnsiFontWeights.BOLD}255{RESET}"
+        "are allowed!"
     )
 
     INVERT: str = "\u001b[7m"
