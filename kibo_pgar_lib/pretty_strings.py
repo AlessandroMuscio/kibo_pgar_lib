@@ -69,7 +69,7 @@ class PrettyStrings:
         return "".join(framed)
 
     @staticmethod
-    def column(to_columnize: str, width: int) -> str:
+    def column(to_columnize: str, width: int, left: bool = True) -> str:
         """Puts teh given string at the beginning of the line and adds spaces until the end of it.
         If the string is too long for the width of the line, it will be cut off.
 
@@ -77,26 +77,28 @@ class PrettyStrings:
         ------
         - to_columnize -> The string to put in column.
         - width -> The length of the line.
+        - left -> If the alignment should be on the left or right, defaulted to True.
 
         Returns
         -------
         A string containing the columned string.
         """
-        columned: list[str] = []
         to_columnize_length: int = len(to_columnize)
         chars_to_print: int = min(width, to_columnize_length)
 
-        columned.append(
+        columned: str = (
             to_columnize[:chars_to_print]
             if to_columnize_length > chars_to_print
             else to_columnize
         )
-
-        columned.append(
-            PrettyStrings.repeat_char(PrettyStrings._SPACE, width - to_columnize_length)
+        spaces: str = PrettyStrings.repeat_char(
+            PrettyStrings._SPACE, width - to_columnize_length
         )
 
-        return "".join(columned)
+        if left:
+            return "".join([columned, spaces])
+        else:
+            return "".join([spaces, columned])
 
     @staticmethod
     def center(to_center: str, width: int) -> str:
@@ -164,12 +166,3 @@ class PrettyStrings:
         A string containing the isolated string.
         """
         return f"{PrettyStrings._NEW_LINE}{to_isolate}{PrettyStrings._NEW_LINE}"
-
-
-def main() -> None:
-    print(PrettyStrings.frame("Cock", 14, True, True))
-    print("Omega")
-
-
-if __name__ == "__main__":
-    main()
