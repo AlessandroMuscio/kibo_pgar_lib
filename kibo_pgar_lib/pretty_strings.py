@@ -97,8 +97,8 @@ class PrettyStrings:
 
         if left:
             return "".join([columned, spaces])
-        else:
-            return "".join([spaces, columned])
+
+        return "".join([spaces, columned])
 
     @staticmethod
     def center(to_center: str, width: int) -> str:

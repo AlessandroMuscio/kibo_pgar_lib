@@ -2,8 +2,8 @@
 
 This module provides:
 - The class AnsiFontColors.
-- The class AnsiFontWeights.
-- The class AnsiFontDecorations.
+- The enum AnsiFontWeights.
+- The enum AnsiFontDecorations.
 - The constant RESET for resetting the previously given customization.
 """
 

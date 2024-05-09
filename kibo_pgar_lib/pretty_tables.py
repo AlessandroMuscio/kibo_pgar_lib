@@ -1,3 +1,10 @@
+"""Module used for pretty printing a table to the terminal.
+
+This module provides:
+- The enum Alignment.
+- The class CommandLineTable.
+"""
+
 # Standard Modules
 from enum import IntEnum
 from typing import Any
@@ -145,7 +152,8 @@ class CommandLineTable:
         can expect, if the dimension of the fillings is smaller than that of the holes, some will
         remain, on the other hand, if it's bigger not all fillings will be used.
 
-        Lets look at an example. I'll use X and O for demonstration purposes, where X is a occupied space and O represents empty, look at this table:
+        Lets look at an example. I'll use X and O for demonstration purposes, where X is a occupied
+        space and O represents empty, look at this table:
 
         |X X X O O|
 

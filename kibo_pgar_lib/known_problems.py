@@ -2,7 +2,6 @@
 
 # Standard Modules
 import math
-import time
 
 
 class KnownProblems:
@@ -149,7 +148,8 @@ class KnownProblems:
     @staticmethod
     def sieve_of_eratosthenes(n: int) -> list[int]:
         """Finds the prime numbers from 2 to n using the Sieve of Eratosthenes algorithm.
-        This algorithm greatly decreases in speed the more we increase n, but it's still the simplest way of finding prime numbers.
+        This algorithm greatly decreases in speed the more we increase n, but it's still the
+        simplest way of finding prime numbers.
 
         Params
         ------
@@ -171,7 +171,8 @@ class KnownProblems:
 
     @staticmethod
     def sieve_of_atkin(limit: int) -> list[int]:
-        """Finds the prime numbers from 2 to limit. Builds on the concept of the sieve of Eratosthenes but it's way faster even though the algorithm is more complex.
+        """Finds the prime numbers from 2 to limit. Builds on the concept of the sieve of
+        Eratosthenes but it's way faster even though the algorithm is more complex.
 
         Params
         ------
@@ -185,7 +186,7 @@ class KnownProblems:
             for y in range(1, constraint):
                 n: int = 4 * x**2 + y**2
                 r: int = n % 12
-                if n <= limit and (r == 1 or r == 5):
+                if n <= limit and r in (1, 5):
                     sieve[n] = not sieve[n]
 
                 n = 3 * x**2 + y**2
