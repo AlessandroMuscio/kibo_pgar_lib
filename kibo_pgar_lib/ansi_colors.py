@@ -7,7 +7,7 @@ This module provides:
 - The constant RESET for resetting the previously given customization.
 """
 
-# Standard Libraries
+# Standard Modules
 from enum import StrEnum
 
 RESET: str = "\u001b[0m"

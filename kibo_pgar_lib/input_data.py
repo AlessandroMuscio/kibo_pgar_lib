@@ -1,6 +1,6 @@
 """Module for the InputData class"""
 
-# Internal Libraries
+# Internal Modules
 from kibo_pgar_lib.ansi_colors import (
     RESET,
     AnsiFontColors,

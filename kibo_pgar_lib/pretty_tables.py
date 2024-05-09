@@ -10,7 +10,8 @@ from enum import IntEnum
 from typing import Any
 
 # Internal Modules
-from kibo_pgar_lib import RESET, AnsiFontColors, AnsiFontWeights, PrettyStrings
+from kibo_pgar_lib.ansi_colors import RESET, AnsiFontColors, AnsiFontWeights
+from kibo_pgar_lib.pretty_strings import PrettyStrings
 
 
 class Alignment(IntEnum):

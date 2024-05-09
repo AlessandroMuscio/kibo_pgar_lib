@@ -1,6 +1,6 @@
 """Module for the RandomDraws class"""
 
-# Standard Libraries
+# Standard Modules
 import random
 
 

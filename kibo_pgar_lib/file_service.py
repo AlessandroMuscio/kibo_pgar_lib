@@ -1,9 +1,9 @@
 """Module representing the FileService class"""
 
-# Standard Libraries
+# Standard Modules
 import pickle
 
-# Internal Libraries
+# Internal Modules
 from kibo_pgar_lib.ansi_colors import RESET, AnsiFontColors, AnsiFontWeights
 
 

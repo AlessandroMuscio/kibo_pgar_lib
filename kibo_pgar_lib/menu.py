@@ -1,9 +1,9 @@
 """Module for the Menu class"""
 
-# Standard Libraries
+# Standard Modules
 import time
 
-# Internal Libraries
+# Internal Modules
 from kibo_pgar_lib.ansi_colors import AnsiFontColors
 from kibo_pgar_lib.input_data import InputData
 from kibo_pgar_lib.known_problems import KnownProblems
