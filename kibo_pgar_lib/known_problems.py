@@ -1,5 +1,9 @@
 """Module for the KnownProblems class"""
 
+# Standard Modules
+import math
+import time
+
 
 class KnownProblems:
     """
@@ -141,3 +145,67 @@ class KnownProblems:
             return 0
 
         return len(splitted_number[1])
+
+    @staticmethod
+    def sieve_of_eratosthenes(n: int) -> list[int]:
+        """Finds the prime numbers from 2 to n using the Sieve of Eratosthenes algorithm.
+        This algorithm greatly decreases in speed the more we increase n, but it's still the simplest way of finding prime numbers.
+
+        Params
+        ------
+        - n -> The limit of the sieve where to search for prime numbers.
+
+        Returns
+        -------
+        A list of integers representing the prime numbers frm 2 to n.
+        """
+        primes: list[int] = []
+        sieve: set[int] = set(range(2, n + 1))
+
+        while sieve:
+            prime = min(sieve)
+            primes.append(prime)
+            sieve -= set(range(prime, n + 1, prime))
+
+        return primes
+
+    @staticmethod
+    def sieve_of_atkin(limit: int) -> list[int]:
+        """Finds the prime numbers from 2 to limit. Builds on the concept of the sieve of Eratosthenes but it's way faster even though the algorithm is more complex.
+
+        Params
+        ------
+        - limit ->
+        """
+        primes: list[int] = [2, 3, 5]
+        sieve: list[bool] = [False] * (limit + 1)
+        constraint: int = int(math.sqrt(limit)) + 1
+
+        for x in range(1, constraint):
+            for y in range(1, constraint):
+                n: int = 4 * x**2 + y**2
+                r: int = n % 12
+                if n <= limit and (r == 1 or r == 5):
+                    sieve[n] = not sieve[n]
+
+                n = 3 * x**2 + y**2
+                r = n % 12
+                if n <= limit and r == 7:
+                    sieve[n] = not sieve[n]
+
+                n = 3 * x**2 - y**2
+                r = n % 12
+                if x > y and n <= limit and r == 11:
+                    sieve[n] = not sieve[n]
+
+        constraint -= 1
+        for x in range(5, constraint):
+            if sieve[x]:
+                for y in range(x**2, limit + 1, x**2):
+                    sieve[y] = False
+
+        for i in range(7, limit + 1):
+            if sieve[i]:
+                primes.append(i)
+
+        return primes
