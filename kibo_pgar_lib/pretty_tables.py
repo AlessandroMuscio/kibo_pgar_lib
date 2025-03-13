@@ -10,7 +10,7 @@ from enum import IntEnum
 from typing import Any
 
 # Internal Modules
-from kibo_pgar_lib.ansi_colors import RESET, AnsiFontColors, AnsiFontWeights
+from kibo_pgar_lib.ansi_colors import AnsiFontColors, AnsiFontWeights
 from kibo_pgar_lib.pretty_strings import PrettyStrings
 
 
@@ -25,7 +25,9 @@ class Alignment(IntEnum):
 class CommandLineTable:
     """Class to handle the visualization of a table in a terminal."""
 
-    _RED_ERROR: str = f"{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
+    _RED_ERROR: str = PrettyStrings.prettify(
+        "Error!", AnsiFontColors.RED, AnsiFontWeights.BOLD
+    )
     _UNKNOWN_ALIGNMENT_EXCEPTION: str = "Impossible to set alignment, value unknown."
     _SET_HEADERS_EXCEPTION: str = "The headers can only be a list of strings."
     _SET_ROWS_EXCEPTION: str = (

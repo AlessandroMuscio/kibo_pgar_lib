@@ -4,7 +4,8 @@
 import pickle
 
 # Internal Modules
-from kibo_pgar_lib.ansi_colors import RESET, AnsiFontColors, AnsiFontWeights
+from kibo_pgar_lib.pretty_strings import PrettyStrings
+from kibo_pgar_lib.ansi_colors import AnsiFontColors, AnsiFontWeights
 
 
 class FileService:
@@ -14,7 +15,9 @@ class FileService:
     """
 
     _ERRORS: dict[str, str] = {
-        "red": f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}",
+        "red": PrettyStrings.prettify(
+            "Error!", AnsiFontColors.RED, AnsiFontWeights.BOLD
+        ),
         "constructor": "This class is not instantiable!",
         "file_not_found": "Can't find the file %s\n",
         "reading": "Problem reading the file %s\n",

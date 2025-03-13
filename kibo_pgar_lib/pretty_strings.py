@@ -1,5 +1,12 @@
 """Module for the PrettyStrings class"""
 
+from kibo_pgar_lib.ansi_colors import (
+    AnsiFontColors,
+    AnsiFontWeights,
+    AnsiFontDecorations,
+    RESET,
+)
+
 
 class PrettyStrings:
     """This class contains various methods to prettify print strings to the terminal."""
@@ -184,3 +191,32 @@ class PrettyStrings:
         ]
 
         return "".join(isolated)
+
+    @staticmethod
+    def prettify(
+        to_prettify: str,
+        color: AnsiFontColors = None,
+        weight: AnsiFontWeights = None,
+        decoration: AnsiFontDecorations = None,
+    ) -> str:
+        prettified: list[str] = []
+        reset = False
+
+        if color:
+            reset = True
+            prettified.append(color)
+
+        if weight:
+            reset = True
+            prettified.append(weight)
+
+        if decoration:
+            reset = True
+            prettified.append(decoration)
+
+        prettified.append(to_prettify)
+
+        if reset:
+            prettified.append(RESET)
+
+        return "".join(prettified)

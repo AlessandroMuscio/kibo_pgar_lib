@@ -7,6 +7,7 @@ from kibo_pgar_lib.ansi_colors import (
     AnsiFontDecorations,
     AnsiFontWeights,
 )
+from kibo_pgar_lib.pretty_strings import PrettyStrings
 
 
 class InputData:
@@ -16,23 +17,30 @@ class InputData:
     """
 
     _ERRORS: dict[str, str] = {
-        "red": f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}",
+        "red": PrettyStrings.prettify(
+            "Error!", AnsiFontColors.RED, AnsiFontWeights.BOLD
+        ),
         "constructor": "This class is not instantiable!",
         "alphanumeric_characters": (
-            f"Only {AnsiFontWeights.BOLD}alphanumeric{RESET} characters are allowed.\n"
+            f"Only {PrettyStrings.prettify("alphanumeric", None, AnsiFontWeights.BOLD)} characters "
+            "are allowed.\n"
         ),
         "empty_string": (
-            f"No {AnsiFontWeights.BOLD}characters{RESET} or only {AnsiFontWeights.BOLD}whitespaces"
-            f"{RESET} were inserted.\n"
+            f"No {PrettyStrings.prettify("characters", None, AnsiFontWeights.BOLD)} or only "
+            f"{PrettyStrings.prettify("whitespaces", None, AnsiFontWeights.BOLD)} were inserted.\n"
         ),
         "allowed_characters": "The only allowed characters are: %s\n",
         "integer_format": (
-            f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An "
-            f"{AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
+            "The inserted data is in an "
+            f"{PrettyStrings.prettify("incorrect", None, AnsiFontWeights.BOLD)} format. An "
+            f"{PrettyStrings.prettify("integer", None, None, AnsiFontDecorations.UNDERLINE)} is "
+            "required.\n"
         ),
         "float_format": (
-            f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A "
-            f"{AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
+            "The inserted data is in an "
+            f"{PrettyStrings.prettify("incorrect", None, AnsiFontWeights.BOLD)} format. A "
+            f"{PrettyStrings.prettify("float", None, None, AnsiFontDecorations.UNDERLINE)} is "
+            "required.\n"
         ),
         "minimum": "A value greater than or equal to %.2f is required.\n",
         "maximum": "A value less than or equal to %.2f is required.\n",
