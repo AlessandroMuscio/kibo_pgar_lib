@@ -2,7 +2,6 @@
 
 # Internal Modules
 from kibo_pgar_lib.ansi_colors import (
-    RESET,
     AnsiFontColors,
     AnsiFontDecorations,
     AnsiFontWeights,
@@ -56,7 +55,7 @@ class InputData:
         ------
         - `NotImplementedError`
         """
-        raise NotImplementedError(InputData._CONSTRUCTOR_ERROR)
+        raise NotImplementedError(InputData._ERRORS["constructor"])
 
     @staticmethod
     def read_string(message: str, alphanumeric: bool = False) -> str:
