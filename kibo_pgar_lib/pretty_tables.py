@@ -40,16 +40,18 @@ class CommandLineTable:
         """Creates a new instance of this class with default settings.
 
         The defaults settings, and so the attributes, are:
-        - show_vlines -> If show or not the vertical lines of the table, default: False.
-        - cell_alignment -> The cell alignment given from the Alignment enum, default: LEFT.
-        - headers -> The list of headers, default: empty list
-        - rows -> The rows of the table, default: empty bi-dimensional list
+        - `show_vlines` -> If show or not the vertical lines of the table, default: False.
+        - `cell_alignment` -> The cell alignment given from the Alignment enum, default: LEFT.
+        - `headers` -> The list of headers, default: empty list
+        - `rows` -> The rows of the table, default: empty bi-dimensional list
         """
         self.show_vlines: bool = False
         self.cell_alignment: Alignment = Alignment.LEFT
         self.headers: list[str] = []
         self.rows: list[list[str]] = []
 
+    # This complex systems of mirrors and levers is because I'm a lazy bum and I didn't want to
+    # write all the getters and setters. I love python :)
     def __getattr__(self, name: str) -> Any:
         return self.__dict__[f"_{name}"]
 
@@ -113,7 +115,7 @@ class CommandLineTable:
 
         Params
         ------
-        - headers -> The headers to add to this table headers.
+        - `headers` -> The headers to add to this table headers.
         """
         headers = list(map(str, headers))
         self.headers.extend(headers)
@@ -127,11 +129,11 @@ class CommandLineTable:
 
         Params
         ------
-        - rows -> The rows to add to this table rows.
+        - `rows` -> The rows to add to this table rows.
 
         Raises
         ------
-        - ValueError -> If the rows are not all of a length equal to that of the headers of this
+        - `ValueError` -> If the rows are not all of a length equal to that of the headers of this
         table.
         """
         rows = [[str(value) for value in row] for row in rows]
@@ -191,6 +193,10 @@ class CommandLineTable:
         |X X X X O|
 
         |X X X X O|
+
+        Params
+        ------
+        - `fillings` -> The bi-dimensional list with the fillings for this table
         """
         fillings = [[str(value) for value in row] for row in fillings]
 
@@ -211,7 +217,7 @@ class CommandLineTable:
             fill_i += 1 if filled else 0
 
     def _get_max_width_per_column(self) -> list[int]:
-        """Calculates the maximum width needed to print each colum. It will add 2 spaces if the
+        """Calculates the maximum width needed to print each column. It will add 2 spaces if the
         alignment is set to center, 1 otherwise.
 
         Returns
@@ -236,6 +242,10 @@ class CommandLineTable:
     def _build_hframe(self, widths: list[int]) -> str:
         """Uses the currently set options to build the horizontal frame that will be used to
         separate each row.
+
+        Params
+        ------
+        - `widths` -> A list of the widths of each column.
 
         Returns
         -------
@@ -267,7 +277,7 @@ class CommandLineTable:
         table: list[list[str]] = [self.headers]
         table.extend(self.rows)
 
-        horizontal_frame: list[str] = self._build_hframe(widths)
+        horizontal_frame: str = self._build_hframe(widths)
 
         for row in table:
             table_str_builder.append(horizontal_frame)
@@ -278,10 +288,12 @@ class CommandLineTable:
                     row_str_builder.append(self._VERTICAL_SEPARATOR)
 
                 if self.cell_alignment == Alignment.CENTER:
-                    row_str_builder.append(PrettyStrings.center(cell, widths[i]))
+                    formatted_cell: str = PrettyStrings.center(cell, widths[i])
                 else:
-                    left: bool = self.cell_alignment < 0
-                    row_str_builder.append(PrettyStrings.column(cell, widths[i], left))
+                    left = self.cell_alignment < 0
+                    formatted_cell: str = PrettyStrings.column(cell, widths[i], left)
+
+                row_str_builder.append(formatted_cell)
 
                 if self.show_vlines:
                     row_str_builder.append(self._VERTICAL_SEPARATOR)

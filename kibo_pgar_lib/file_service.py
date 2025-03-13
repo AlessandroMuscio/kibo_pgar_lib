@@ -13,22 +13,23 @@ class FileService:
     file.
     """
 
-    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
-
-    _RED_ERROR = f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
-    _FILE_NOT_FOUND_ERROR = "Can't find the file %s\n"
-    _READING_ERROR = "Problem reading the file %s\n"
-    _WRITING_ERROR = "Problem writing the file %s\n"
+    _ERRORS: dict[str, str] = {
+        "red": f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}",
+        "constructor": "This class is not instantiable!",
+        "file_not_found": "Can't find the file %s\n",
+        "reading": "Problem reading the file %s\n",
+        "writing": "Problem writing the file %s\n",
+    }
 
     def __init__(self) -> None:
         """Prevents instantiation of this class
 
         Raises
         ------
-        - NotImplementedError
+        - `NotImplementedError`
         """
 
-        raise NotImplementedError(FileService._CONSTRUCTOR_ERROR)
+        raise NotImplementedError(FileService._ERRORS["constructor"])
 
     @staticmethod
     def serialize_object(file_path: str, to_save: object) -> None:
@@ -36,16 +37,16 @@ class FileService:
 
         Params
         ------
-        - file_path -> The file path where to save the serialized object.
-        - to_save -> The object to serialize and save.
+        - `file_path` -> The file path where to save the serialized object.
+        - `to_save` -> The object to serialize and save.
         """
 
         try:
             with open(file_path, "wb") as f:
                 pickle.dump(to_save, f)
         except IOError:
-            print(FileService._RED_ERROR)
-            print(FileService._WRITING_ERROR % file_path)
+            print(FileService._ERRORS["red"])
+            print(FileService._ERRORS["writing"] % file_path)
 
     @staticmethod
     def deserialize_object(file_path: str) -> object:
@@ -53,7 +54,7 @@ class FileService:
 
         Params
         ------
-        - file_path -> The file path where to find the serialized object.
+        - `file_path` -> The file path where to find the serialized object.
 
         Returns
         -------
@@ -64,10 +65,10 @@ class FileService:
             with open(file_path, "rb") as f:
                 return pickle.load(f)
         except FileNotFoundError:
-            print(FileService._RED_ERROR)
-            print(FileService._FILE_NOT_FOUND_ERROR % file_path)
+            print(FileService._ERRORS["red"])
+            print(FileService._ERRORS["file_not_found"] % file_path)
         except (IOError, pickle.UnpicklingError):
-            print(FileService._RED_ERROR)
-            print(FileService._READING_ERROR % file_path)
+            print(FileService._ERRORS["red"])
+            print(FileService._ERRORS["reading"] % file_path)
 
         return None

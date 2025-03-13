@@ -10,7 +10,7 @@ This module provides:
 # Standard Modules
 from enum import StrEnum
 
-RESET: str = "\u001b[0m"
+RESET = "\u001b[0m"
 
 
 class AnsiFontWeights(StrEnum):
@@ -39,29 +39,29 @@ class AnsiFontColors:
     the specified methods.
     """
 
-    _VALUE_ERROR: str = (
+    _VALUE_ERROR = (
         f"Only values from {AnsiFontWeights.BOLD}0{RESET} to {AnsiFontWeights.BOLD}255{RESET}"
         "are allowed!"
     )
 
-    INVERT: str = "\u001b[7m"
-    BLACK: str = "\u001b[30m"
-    RED: str = "\u001b[31m"
-    GREEN: str = "\u001b[32m"
-    YELLOW: str = "\u001b[33m"
-    BLUE: str = "\u001b[34m"
-    PURPLE: str = "\u001b[35m"
-    CYAN: str = "\u001b[36m"
-    WHITE: str = "\u001b[37m"
-    BLACK_BACKGROUND: str = "\u001b[40m"
-    RED_BACKGROUND: str = "\u001b[41m"
-    GREEN_BACKGROUND: str = "\u001b[42m"
-    YELLOW_BACKGROUND: str = "\u001b[43m"
-    BLUE_BACKGROUND: str = "\u001b[44m"
-    PURPLE_BACKGROUND: str = "\u001b[45m"
-    CYAN_BACKGROUND: str = "\u001b[46m"
-    WHITE_BACKGROUND: str = "\u001b[47m"
-    CLEAR: str = "\u001b[H\u001b[2J"
+    INVERT = "\u001b[7m"
+    BLACK = "\u001b[30m"
+    RED = "\u001b[31m"
+    GREEN = "\u001b[32m"
+    YELLOW = "\u001b[33m"
+    BLUE = "\u001b[34m"
+    PURPLE = "\u001b[35m"
+    CYAN = "\u001b[36m"
+    WHITE = "\u001b[37m"
+    BLACK_BACKGROUND = "\u001b[40m"
+    RED_BACKGROUND = "\u001b[41m"
+    GREEN_BACKGROUND = "\u001b[42m"
+    YELLOW_BACKGROUND = "\u001b[43m"
+    BLUE_BACKGROUND = "\u001b[44m"
+    PURPLE_BACKGROUND = "\u001b[45m"
+    CYAN_BACKGROUND = "\u001b[46m"
+    WHITE_BACKGROUND = "\u001b[47m"
+    CLEAR = "\u001b[H\u001b[2J"
 
     @staticmethod
     def eight_bit_color(n: int, apply_to_background: bool = False) -> str:
@@ -88,7 +88,7 @@ class AnsiFontColors:
         if n < 0 or n > 255:
             raise ValueError(AnsiFontColors._VALUE_ERROR)
 
-        sgr: str = "48" if apply_to_background else "38"
+        sgr = "48" if apply_to_background else "38"
 
         return f"\u001b[{sgr};5;{n}m"
 
@@ -110,12 +110,12 @@ class AnsiFontColors:
         -------
         A string with the ansi code for coloring the back or foreground of the terminal.
         """
-        red_error: bool = red < 0 or red > 255
-        blue_error: bool = blue < 0 or blue > 255
-        green_error: bool = green < 0 or green > 255
+        red_error = red < 0 or red > 255
+        blue_error = blue < 0 or blue > 255
+        green_error = green < 0 or green > 255
         if red_error or blue_error or green_error:
             raise ValueError(AnsiFontColors._VALUE_ERROR)
 
-        sgr: str = "48" if apply_to_background else "38"
+        sgr = "48" if apply_to_background else "38"
 
         return f"\u001b[{sgr};2;{red};{green};{blue}m"

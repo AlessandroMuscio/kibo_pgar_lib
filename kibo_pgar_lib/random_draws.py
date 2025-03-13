@@ -15,7 +15,7 @@ class RandomDraws:
 
         Raises
         ------
-        - NotImplementedError
+        - `NotImplementedError`
         """
         raise NotImplementedError(RandomDraws._CONSTRUCTOR_ERROR)
 
@@ -25,8 +25,8 @@ class RandomDraws:
 
         Params
         ------
-        - minimum -> The minimum value to draw.
-        - maximum -> The maximum value to draw
+        - `minimum` -> The minimum value to draw.
+        - `maximum` -> The maximum value to draw
 
         Returns
         -------
@@ -40,8 +40,8 @@ class RandomDraws:
 
         Params
         ------
-        - minimum -> The minimum value to draw.
-        - maximum -> The maximum value to draw
+        - `minimum` -> The minimum value to draw.
+        - `maximum` -> The maximum value to draw
 
         Returns
         -------
@@ -65,9 +65,9 @@ class RandomDraws:
 
         Params
         ------
-        - minimum -> The minimum value to draw.
-        - maximum -> The maximum value to draw.
-        - exponent -> The exponent of the distribution.
+        - `minimum` -> The minimum value to draw.
+        - `maximum` -> The maximum value to draw.
+        - `exponent` -> The exponent of the distribution.
 
         Returns
         -------

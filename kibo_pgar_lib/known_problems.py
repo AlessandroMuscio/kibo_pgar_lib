@@ -10,8 +10,10 @@ class KnownProblems:
     to go watch the solution on StackOverflow even though you know you've already solved them.
     """
 
-    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
-    _VALUES_ERROR: str = "Too few arguments were passed!"
+    _ERRORS: dict[str, str] = {
+        "constructor": "This class is not instantiable!",
+        "values": "Too few arguments were passed!",
+    }
 
     def __init__(self) -> None:
         """Prevents the instantiation of this class.
@@ -20,7 +22,7 @@ class KnownProblems:
         ------
         - NotImplementedError
         """
-        raise NotImplementedError(KnownProblems._CONSTRUCTOR_ERROR)
+        raise NotImplementedError(KnownProblems._ERRORS["constructor"])
 
     @staticmethod
     def _mcd(a: int, b: int) -> int:
@@ -28,8 +30,8 @@ class KnownProblems:
 
         Params
         ------
-        - a -> The first number to calculate the MCD.
-        - b -> The second number to calculate the MCD.
+        - `a` -> The first number to calculate the MCD.
+        - `b` -> The second number to calculate the MCD.
 
         Returns
         -------
@@ -49,7 +51,7 @@ class KnownProblems:
 
         Params
         ------
-        - values -> The values used to find the MCD.
+        - `values` -> The values used to find the MCD.
 
         Returns
         -------
@@ -57,10 +59,10 @@ class KnownProblems:
 
         Raises
         ------
-        - ValueError -> If less than two values are given.
+        - `ValueError` -> If less than two values are given.
         """
         if not values or len(values) < 2:
-            raise ValueError(KnownProblems._VALUES_ERROR)
+            raise ValueError(KnownProblems._ERRORS["values"])
 
         mcd: int = values[0]
 
@@ -75,8 +77,8 @@ class KnownProblems:
 
         Params
         ------
-        - a -> The first number to calculate the MCM.
-        - b -> The second number to calculate the MCM.
+        - `a` -> The first number to calculate the MCM.
+        - `b` -> The second number to calculate the MCM.
 
         Returns
         -------
@@ -92,7 +94,7 @@ class KnownProblems:
 
         Params
         ------
-        - values -> The values used to find the MCM.
+        - `values` -> The values used to find the MCM.
 
         Returns
         -------
@@ -100,10 +102,10 @@ class KnownProblems:
 
         Raises
         ------
-        - ValueError -> If less than two values are given.
+        - `ValueError` -> If less than two values are given.
         """
         if not values or len(values) < 2:
-            raise ValueError(KnownProblems._VALUES_ERROR)
+            raise ValueError(KnownProblems._ERRORS["values"])
 
         mcm: int = values[0]
 
@@ -118,11 +120,11 @@ class KnownProblems:
 
         Params
         ------
-        - n -> The number to calculate the digits.
+        - `n` -> The number to calculate the digits.
 
         Returns
         -------
-        An integer representing the number of digits of n.
+        An integer representing the number of digits of `n`.
         """
         return len(str(abs(n)))
 
@@ -132,11 +134,11 @@ class KnownProblems:
 
         Params
         ------
-        - n -> The number to calculate the decimal digits.
+        - `n` -> The number to calculate the decimal digits.
 
         Returns
         -------
-        An integer representing the number of decimal digits of n.
+        An integer representing the number of decimal digits of `n`.
         """
         splitted_number: list[str] = str(abs(n)).split(".")
 
@@ -147,17 +149,17 @@ class KnownProblems:
 
     @staticmethod
     def sieve_of_eratosthenes(n: int) -> list[int]:
-        """Finds the prime numbers from 2 to n using the Sieve of Eratosthenes algorithm.
-        This algorithm greatly decreases in speed the more we increase n, but it's still the
-        simplest way of finding prime numbers.
+        """Finds the prime numbers from 2 to `n` using the Sieve of Eratosthenes algorithm. This
+        algorithm greatly decreases in speed the more we increase `n`, but it's still the simplest
+        way of finding prime numbers.
 
         Params
         ------
-        - n -> The limit of the sieve where to search for prime numbers.
+        - `n` -> The limit of the sieve where to search for prime numbers.
 
         Returns
         -------
-        A list of integers representing the prime numbers frm 2 to n.
+        A list of integers representing the prime numbers frm 2 to `n`.
         """
         primes: list[int] = []
         sieve: set[int] = set(range(2, n + 1))
@@ -176,16 +178,20 @@ class KnownProblems:
 
         Params
         ------
-        - limit ->
+        - `limit` -> The limit of the sieve where to search for prime numbers.
+
+        Returns
+        -------
+        A list of integers representing the prime numbers frm 2 to `limit`.
         """
         primes: list[int] = [2, 3, 5]
         sieve: list[bool] = [False] * (limit + 1)
-        constraint: int = int(math.sqrt(limit)) + 1
+        constraint = int(math.sqrt(limit)) + 1
 
         for x in range(1, constraint):
             for y in range(1, constraint):
-                n: int = 4 * x**2 + y**2
-                r: int = n % 12
+                n = 4 * x**2 + y**2
+                r = n % 12
                 if n <= limit and r in (1, 5):
                     sieve[n] = not sieve[n]
 

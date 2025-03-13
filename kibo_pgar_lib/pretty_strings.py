@@ -4,7 +4,11 @@
 class PrettyStrings:
     """This class contains various methods to prettify print strings to the terminal."""
 
-    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
+    _ERRORS: dict[str, str] = {
+        "constructor": "This class is not instantiable!",
+        "empty_char": "Character mustn't be an empty string.\n",
+    }
+
     _SPACE = " "
     _HORIZONTAL_FRAME = "-"
     _VERTICAL_FRAME = "|"
@@ -15,9 +19,9 @@ class PrettyStrings:
 
         Raises
         ------
-        - NotImplementedError
+        - `NotImplementedError`
         """
-        raise NotImplementedError(PrettyStrings._CONSTRUCTOR_ERROR)
+        raise NotImplementedError(PrettyStrings._ERRORS["constructor"])
 
     @staticmethod
     def frame(
@@ -29,10 +33,10 @@ class PrettyStrings:
 
         Params
         ------
-        - to_frame -> The string to put in the frame
-        - frame_length -> The length of the horizontal frame.
-        - centered -> If the string needs to be centered or not.
-        - vertical_frame -> If the vertical frame is needed or not.
+        - `to_frame` -> The string to put in the frame
+        - `frame_length` -> The length of the horizontal frame.
+        - `centered` -> If the string needs to be centered or not.
+        - `vertical_frame` -> If the vertical frame is needed or not.
 
         Returns
         -------
@@ -46,23 +50,27 @@ class PrettyStrings:
 
         framed.extend(horizontal_frame)
 
+        to_append: list[str] = [PrettyStrings._NEW_LINE]
         if vertical_frame:
-            to_append: str = PrettyStrings._VERTICAL_FRAME
-            to_append += (
-                PrettyStrings.center(to_frame, frame_length - 2)
-                if centered
-                else PrettyStrings.column(to_frame, frame_length - 2)
-            )
-            to_append += PrettyStrings._VERTICAL_FRAME + PrettyStrings._NEW_LINE
-        else:
-            to_append: str = (
-                PrettyStrings.center(to_frame, frame_length)
-                if centered
-                else PrettyStrings.column(to_frame, frame_length)
-            )
-            to_append += PrettyStrings._NEW_LINE
+            frame_length -= 2
 
-        framed.append(to_append)
+            to_append.extend(
+                [PrettyStrings._VERTICAL_FRAME, PrettyStrings._VERTICAL_FRAME]
+            )
+            to_append.reverse()
+
+            insert_pos_framed_str = 1
+        else:
+            insert_pos_framed_str = 0
+
+        framed_str: str = (
+            PrettyStrings.center(to_frame, frame_length)
+            if centered
+            else PrettyStrings.column(to_frame, frame_length)
+        )
+        to_append.insert(insert_pos_framed_str, framed_str)
+
+        framed.append("".join(to_append))
 
         framed.extend(horizontal_frame)
 
@@ -75,15 +83,15 @@ class PrettyStrings:
 
         Params
         ------
-        - to_columnize -> The string to put in column.
-        - width -> The length of the line.
-        - left -> If the alignment should be on the left or right, defaulted to True.
+        - `to_columnize` -> The string to put in column.
+        - `width` -> The length of the line.
+        - `left` -> If the alignment should be on the left or right, defaulted to True.
 
         Returns
         -------
         A string containing the columned string.
         """
-        to_columnize_length: int = len(to_columnize)
+        to_columnize_length = len(to_columnize)
         chars_to_print: int = min(width, to_columnize_length)
 
         columned: str = (
@@ -107,14 +115,14 @@ class PrettyStrings:
 
         Params
         ------
-        - to_center -> The string to center.
-        - width -> The length of the line where to center the string.
+        - `to_center` -> The string to center.
+        - `width` -> The length of the line where to center the string.
 
         Returns
         -------
         A string containing the centered string.
         """
-        to_center_length: int = len(to_center)
+        to_center_length = len(to_center)
 
         if to_center_length > width:
             return to_center[:width]
@@ -122,18 +130,15 @@ class PrettyStrings:
         if to_center_length == width:
             return to_center
 
-        centered: list[str] = []
-        whitespaces: int = width - to_center_length
-        whitespaces_before: int = whitespaces // 2
-        whitespaces_after: int = whitespaces - whitespaces_before
+        whitespaces_num = width - to_center_length
+        whitespaces_before = whitespaces_num // 2
+        whitespaces_after = whitespaces_num - whitespaces_before
 
-        centered.append(
-            PrettyStrings.repeat_char(PrettyStrings._SPACE, whitespaces_before)
-        )
-        centered.append(to_center)
-        centered.append(
-            PrettyStrings.repeat_char(PrettyStrings._SPACE, whitespaces_after)
-        )
+        centered: list[str] = [
+            PrettyStrings.repeat_char(PrettyStrings._SPACE, whitespaces_before),
+            to_center,
+            PrettyStrings.repeat_char(PrettyStrings._SPACE, whitespaces_after),
+        ]
 
         return "".join(centered)
 
@@ -143,15 +148,22 @@ class PrettyStrings:
 
         Params
         ------
-        - char -> The character to repeat.
-        - times -> The number of times to repeat the character.
+        - `char` -> The character to repeat.
+        - `times` -> The number of times to repeat the character.
 
         Returns
         -------
         A string containing the character repeated. If times is less than or equal to 0 an empty
         string will be returned.
+
+        Raises
+        ------
+        - `ValueError` -> If `char` is an empty string.
         """
-        return char * max(0, times)
+        if not char:
+            raise ValueError(PrettyStrings._ERRORS["empty_char"])
+
+        return char[0] * max(0, times)
 
     @staticmethod
     def isolated_line(to_isolate: str) -> str:
@@ -159,10 +171,16 @@ class PrettyStrings:
 
         Params
         ------
-        - to_isolate -> The string to isolate.
+        - `to_isolate` -> The string to isolate.
 
         Returns
         -------
         A string containing the isolated string.
         """
-        return f"{PrettyStrings._NEW_LINE}{to_isolate}{PrettyStrings._NEW_LINE}"
+        isolated = [
+            PrettyStrings._NEW_LINE,
+            to_isolate,
+            PrettyStrings._NEW_LINE,
+        ]
+
+        return "".join(isolated)

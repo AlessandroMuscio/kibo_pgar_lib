@@ -32,10 +32,10 @@ class Menu:
 
         Params
         ------
-        - title -> The title of the menu.
-        - entries -> The entries, options, of the menu.
-        - use_exit_entry -> If you want the exit entry or not.
-        - centred_title -> If you want the title to be centred or not.
+        - `title` -> The title of the menu.
+        - `entries` -> The entries, options, of the menu.
+        - `use_exit_entry` -> If you want the exit entry or not.
+        - `centred_title` -> If you want the title to be centred or not.
         """
         self._title = title
         self._entries = entries
@@ -60,7 +60,7 @@ class Menu:
 
         Params
         ------
-        - value -> The value to set the attribute to.
+        - `value` -> The value to set the attribute to.
         """
         self._use_vertical_frame = value
 
@@ -75,29 +75,26 @@ class Menu:
         frame_length = len(self._title)
 
         for i, entry in enumerate(self._entries):
-            frame_length = max(
-                frame_length, len(entry) + KnownProblems.count_integer_digits(i + 1) + 2
-            )
+            # The +2 is for the dot and space (es. "3. ")
+            entry_length = len(entry) + KnownProblems.count_integer_digits(i + 1) + 2
+
+            frame_length = max(frame_length, entry_length)
 
         return frame_length + 10  # Adding a bit of extra space
 
     def _print_menu(self) -> None:
         """Prints the menu, the framed title, followed by all the entries."""
-        menu = []
-
-        menu.append(
+        menu: list[str] = [
             PrettyStrings.frame(
                 self._title,
                 self._frame_length,
                 self._centred_title,
                 self._use_vertical_frame,
             )
-        )
+        ]
 
         for i, entry in enumerate(self._entries):
-            to_append = f"{i+1}. {entry}{self._NEW_LINE}"
-
-            menu.append(to_append)
+            menu.append("".join([str(i + 1), ". ", entry, self._NEW_LINE]))
 
         if self._use_exit_entry:
             menu.append(PrettyStrings.isolated_line(self._EXIT_ENTRY))
@@ -133,11 +130,11 @@ class Menu:
 
         Params
         ------
-        - milliseconds -> The number of milliseconds to stop the program.
+        - `milliseconds` -> The number of milliseconds to stop the program.
 
         Raises
         ------
-        - ValueError -> When the milliseconds are negative.
+        - `ValueError` -> When the milliseconds are negative.
         """
         if milliseconds < 0:
             raise ValueError(Menu._NEGATIVE_MILLIS_ERROR)
@@ -150,7 +147,7 @@ class Menu:
 
         Params
         ------
-        - message -> The message to print.
+        - `message` -> The message to print.
         """
 
         print(message, end="", flush=True)

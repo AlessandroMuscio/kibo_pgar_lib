@@ -15,36 +15,38 @@ class InputData:
     make controls on the data inserted and printing errors to the user.
     """
 
-    _CONSTRUCTOR_ERROR: str = "This class is not instantiable!"
-    _RED_ERROR: str = f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}"
+    _ERRORS: dict[str, str] = {
+        "red": f"\n{AnsiFontColors.RED}{AnsiFontWeights.BOLD}Error!{RESET}",
+        "constructor": "This class is not instantiable!",
+        "alphanumeric_characters": (
+            f"Only {AnsiFontWeights.BOLD}alphanumeric{RESET} characters are allowed.\n"
+        ),
+        "empty_string": (
+            f"No {AnsiFontWeights.BOLD}characters{RESET} or only {AnsiFontWeights.BOLD}whitespaces"
+            f"{RESET} were inserted.\n"
+        ),
+        "allowed_characters": "The only allowed characters are: %s\n",
+        "integer_format": (
+            f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An "
+            f"{AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
+        ),
+        "float_format": (
+            f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A "
+            f"{AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
+        ),
+        "minimum": "A value greater than or equal to %.2f is required.\n",
+        "maximum": "A value less than or equal to %.2f is required.\n",
+    }
 
-    _ALPHANUMERIC_CHARACTERS_ERROR: str = (
-        f"Only {AnsiFontWeights.BOLD}alphanumeric{RESET} characters are allowed.\n"
-    )
-    _EMPTY_STRING_ERROR: str = (
-        f"No {AnsiFontWeights.BOLD}characters{RESET} or only {AnsiFontWeights.BOLD}whitespaces"
-        f"{RESET} were inserted.\n"
-    )
-    _ALLOWED_CHARACTERS_ERROR: str = "The only allowed characters are: %s\n"
-    _YES_ANSWERS: str = "yY"
-    _NO_ANSWERS: str = "nN"
-    _INTEGER_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. An "
-        f"{AnsiFontDecorations.UNDERLINE}integer{RESET} is required.\n"
-    )
-    _MINIMUM_ERROR: str = "A value greater than or equal to %.2f is required.\n"
-    _MAXIMUM_ERROR: str = "A value less than or equal to %.2f is required.\n"
-    _FLOAT_FORMAT_ERROR: str = (
-        f"The inserted data is in an {AnsiFontWeights.BOLD}incorrect{RESET} format. A "
-        f"{AnsiFontDecorations.UNDERLINE}float{RESET} is required.\n"
-    )
+    _YES_ANSWERS = "yY"
+    _NO_ANSWERS = "nN"
 
     def __init__(self) -> None:
         """Prevents the instantiation of this class.
 
         Raises
         ------
-        - NotImplementedError
+        - `NotImplementedError`
         """
         raise NotImplementedError(InputData._CONSTRUCTOR_ERROR)
 
@@ -56,8 +58,8 @@ class InputData:
 
         Params
         ------
-        - message -> The message to print.
-        - alphanumeric -> If the input needs to be alphanumeric or not, defaulted to False.
+        - `message` -> The message to print.
+        - `alphanumeric` -> If the input needs to be alphanumeric or not, defaulted to False.
 
         Returns
         -------
@@ -66,15 +68,15 @@ class InputData:
         if not alphanumeric:
             return input(message)
 
-        is_alphanumeric: bool = False
+        is_alphanumeric = False
         while not is_alphanumeric:
-            read: str = input(message)
+            read = input(message)
 
             is_alphanumeric = read.isalnum() if read else True
 
             if not is_alphanumeric:
-                print(InputData._RED_ERROR)
-                print(InputData._ALPHANUMERIC_CHARACTERS_ERROR)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["alphanumeric_characters"])
 
         return read
 
@@ -86,22 +88,23 @@ class InputData:
 
         Params
         ------
-        - message -> The message to print.
-        - alphanumeric -> If the input needs to be alphanumeric or not.
+        - `message` -> The message to print.
+        - `alphanumeric` -> If the input needs to be alphanumeric or not.
 
         Returns
         -------
         A string representing the user input.
         """
-        is_empty: bool = True
+        is_empty = True
 
         while is_empty:
-            read: str = InputData.read_string(message, alphanumeric).strip()
+            read = InputData.read_string(message, alphanumeric).strip()
 
             is_empty = not read
+
             if is_empty:
-                print(InputData._RED_ERROR)
-                print(InputData._EMPTY_STRING_ERROR)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["empty_string"])
 
         return read
 
@@ -112,8 +115,8 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display to the user.
-        - allowed -> Contains the allowed characters, defaulted to None.
+        - `message` -> The message to display to the user.
+        - `allowed` -> Contains the allowed characters, defaulted to None.
 
         Returns
         -------
@@ -130,8 +133,8 @@ class InputData:
             if read in allowed:
                 is_allowed = True
             else:
-                print(InputData._RED_ERROR)
-                print(InputData._ALLOWED_CHARACTERS_ERROR % list(allowed))
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["allowed_characters"] % list(allowed))
 
         return read
 
@@ -145,7 +148,7 @@ class InputData:
 
         Params
         ------
-        - question -> The question to display the user without question mark.
+        - `question` -> The question to display the user without question mark.
 
         Returns
         -------
@@ -167,21 +170,21 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
+        - `message` -> The message to display the user.
 
         Returns
         -------
         The integer input by the user.
         """
-        is_integer: bool = False
+        is_integer = False
 
         while not is_integer:
             try:
-                read: int = int(input(message))
+                read = int(input(message))
                 is_integer = True
             except ValueError:
-                print(InputData._RED_ERROR)
-                print(InputData._INTEGER_FORMAT_ERROR)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["integer_format"])
 
         return read
 
@@ -191,23 +194,23 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - min_value -> The minimum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `min_value` -> The minimum allowed value for the input.
 
         Returns
         -------
         The integer input by the user that is greater than or equal to min_value.
         """
-        is_input_out_of_range: bool = True
+        is_input_out_of_range = True
 
         while is_input_out_of_range:
-            read: int = InputData.read_integer(message)
+            read = InputData.read_integer(message)
 
-            if read >= min_value:
-                is_input_out_of_range = False
-            else:
-                print(InputData._RED_ERROR)
-                print(InputData._MINIMUM_ERROR % min_value)
+            is_input_out_of_range = read < min_value
+
+            if is_input_out_of_range:
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["minimum"] % min_value)
 
         return read
 
@@ -217,23 +220,23 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - max_value -> The maximum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `max_value` -> The maximum allowed value for the input.
 
         Returns
         -------
         The integer input by the user that is less than or equal to max_value.
         """
-        is_input_out_of_range: bool = True
+        is_input_out_of_range = True
 
         while is_input_out_of_range:
-            read: int = InputData.read_integer(message)
+            read = InputData.read_integer(message)
 
-            if read <= max_value:
-                is_input_out_of_range = False
-            else:
-                print(InputData._RED_ERROR)
-                print(InputData._MAXIMUM_ERROR % max_value)
+            is_input_out_of_range = read > max_value
+
+            if is_input_out_of_range:
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["maximum"] % max_value)
 
         return read
 
@@ -243,26 +246,26 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - min_value -> The minimum allowed value for the input.
-        - max_value -> The maximum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `min_value` -> The minimum allowed value for the input.
+        - `max_value` -> The maximum allowed value for the input.
 
         Returns
         -------
         The integer input by the user that is greater than or equal to min_value and less than or
         equal to max_value.
         """
-        is_input_out_of_range: bool = True
+        is_input_out_of_range = True
 
         while is_input_out_of_range:
-            read: int = InputData.read_integer(message)
+            read = InputData.read_integer(message)
 
             if read < min_value:
-                print(InputData._RED_ERROR)
-                print(InputData._MINIMUM_ERROR % min_value)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["minimum"] % min_value)
             elif read > max_value:
-                print(InputData._RED_ERROR)
-                print(InputData._MAXIMUM_ERROR % max_value)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["maximum"] % max_value)
             else:
                 is_input_out_of_range = False
 
@@ -274,21 +277,21 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
+        - `message` -> The message to display the user.
 
         Returns
         -------
         The float input by the user.
         """
-        is_float: bool = False
+        is_float = False
 
         while not is_float:
             try:
                 read = float(input(message))
                 is_float = True
             except ValueError:
-                print(InputData._RED_ERROR)
-                print(InputData._FLOAT_FORMAT_ERROR)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["float_format"])
 
         return read
 
@@ -298,23 +301,23 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - min_value -> The minimum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `min_value` -> The minimum allowed value for the input.
 
         Returns
         -------
         The float input by the user that is greater than or equal to min_value.
         """
-        is_input_out_of_range: bool = True
+        is_input_out_of_range = True
 
         while is_input_out_of_range:
-            read: float = InputData.read_float(message)
+            read = InputData.read_float(message)
 
-            if read >= min_value:
-                is_input_out_of_range = False
-            else:
-                print(InputData._RED_ERROR)
-                print(InputData._MINIMUM_ERROR % min_value)
+            is_input_out_of_range = read < min_value
+
+            if is_input_out_of_range:
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["minimum"] % min_value)
 
         return read
 
@@ -324,23 +327,23 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - max_value -> The maximum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `max_value` -> The maximum allowed value for the input.
 
         Returns
         -------
         The float input by the user that is less than or equal to max_value.
         """
-        is_input_out_of_range: bool = True
+        is_input_out_of_range = True
 
         while is_input_out_of_range:
-            read: float = InputData.read_float(message)
+            read = InputData.read_float(message)
 
-            if read <= max_value:
-                is_input_out_of_range = False
-            else:
-                print(InputData._RED_ERROR)
-                print(InputData._MAXIMUM_ERROR % max_value)
+            is_input_out_of_range = read > max_value
+
+            if is_input_out_of_range:
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["maximum"] % max_value)
 
         return read
 
@@ -350,9 +353,9 @@ class InputData:
 
         Params
         ------
-        - message -> The message to display the user.
-        - min_value -> The minimum allowed value for the input.
-        - max_value -> The maximum allowed value for the input.
+        - `message` -> The message to display the user.
+        - `min_value` -> The minimum allowed value for the input.
+        - `max_value` -> The maximum allowed value for the input.
 
         Returns
         -------
@@ -365,11 +368,11 @@ class InputData:
             read: float = InputData.read_float(message)
 
             if read < min_value:
-                print(InputData._RED_ERROR)
-                print(InputData._MINIMUM_ERROR % min_value)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["minimum"] % min_value)
             elif read > max_value:
-                print(InputData._RED_ERROR)
-                print(InputData._MAXIMUM_ERROR % max_value)
+                print(InputData._ERRORS["red"])
+                print(InputData._ERRORS["maximum"] % max_value)
             else:
                 is_input_out_of_range = False
 
