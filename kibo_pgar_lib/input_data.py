@@ -123,7 +123,9 @@ class InputData:
         The single character input by the user.
         """
         if not allowed:
-            return InputData.read_non_empty_string(message, False)[0]
+            read = InputData.read_string(message)
+
+            return read[0] if read else "\0"
 
         is_allowed = False
 
