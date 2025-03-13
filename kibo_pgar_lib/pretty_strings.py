@@ -199,6 +199,19 @@ class PrettyStrings:
         weight: AnsiFontWeights = None,
         decoration: AnsiFontDecorations = None,
     ) -> str:
+        """Prettifies the given string by adding a color, weight and decoration if given.
+
+        Params
+        ------
+        - `to_prettify` -> The string to be prettified.
+        - `color` -> The color given to the string, `none` for default color.
+        - `weight` -> The weight given to the string, `none` for default weight.
+        - `decoration` -> The decoration given to the string, `none` for default decoration.
+
+        Returns
+        -------
+        A string representing the given one prettified.
+        """
         prettified: list[str] = []
         reset = False
 
